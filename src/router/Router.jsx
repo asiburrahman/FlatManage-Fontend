@@ -22,6 +22,7 @@ import Apartment from "../component/Pages/Apartment";
 import Announcements from "../component/Pages/Announcements";
 import ManageMembers from "../component/Profile/Admin/ManageMembers";
 import AgreementRequests from "../component/Profile/Admin/AgreementRequests";
+import AdminAnnouncementForm from "../component/Profile/Admin/AdminAnnouncementForm";
   
   const router = createBrowserRouter([
     
@@ -94,6 +95,10 @@ import AgreementRequests from "../component/Profile/Admin/AgreementRequests";
          {
           path:'/dashboard/agreementRequests',
           Component: AgreementRequests,
+        },
+         {
+          path:'/dashboard/makeAnnouncement',
+          Component: AdminAnnouncementForm,
         },
         
      
