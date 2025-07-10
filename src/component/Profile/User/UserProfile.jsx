@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import useAuth from '../hooks/UseAuth';
-import UseAxiosToken from '../hooks/UseAxiosToken';
-import { formatDate } from '../API/utilities';
+import useAuth from '../../hooks/UseAuth';
+import UseAxiosToken from '../../hooks/UseAxiosToken';
+import { formatDate } from '../../API/utilities';
 
 const UserProfile = () => {
   const { user } = useAuth();

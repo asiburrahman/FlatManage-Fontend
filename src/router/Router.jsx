@@ -19,6 +19,7 @@ import About from "../component/Pages/About";
 import DashboardLayout from "../lyout/DashboardLayout";
 import Dashboard from "../component/Dashboard/Dashboard";
 import Apartment from "../component/Pages/Apartment";
+import Announcements from "../component/Pages/Announcements";
   
   const router = createBrowserRouter([
     
@@ -81,8 +82,8 @@ import Apartment from "../component/Pages/Apartment";
         },
 
          {
-          path:'apartment',
-          Component: Apartment,
+          path:'announcement',
+          Component: Announcements,
           // loader: ()=> fetch('http://localhost:3000/availableFood')
         },
         

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router';
+import { Link, NavLink, Outlet } from 'react-router'; 
 import {
   FaHome,
   FaBoxOpen,
@@ -9,7 +9,15 @@ import {
   FaTachometerAlt,
 } from 'react-icons/fa';
 
+import Role from '../component/hooks/Role';
+import Loading from '../component/Loading/Loading';
+
 const DashboardLayout = () => {
+  const { role, isLoading } = Role();
+
+  // ✅ FIXED: return loading component
+  if (isLoading) return <Loading />;
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -60,7 +68,12 @@ const DashboardLayout = () => {
             </div>
           </li>
 
-          {/* Links */}
+          {/* User Profile */}
+
+          {role?.role === 'user' && (
+            <>
+              <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
+
           <li>
             <NavLink to="/dashboard" className={({ isActive }) =>
               isActive
@@ -71,48 +84,84 @@ const DashboardLayout = () => {
               My Profile
             </NavLink>
           </li>
-
-
-
           <li>
-            <NavLink to="apartment" className={({ isActive }) =>
+            <NavLink to="/dashboard/announcement" className={({ isActive }) =>
               isActive
                 ? 'text-blue-600 underline font-semibold'
                 : 'text-gray-600 hover:text-blue-600'
             }>
               <FaBoxOpen className="inline-block mr-2" />
-              Available Food
+              Announcement
             </NavLink>
           </li>
+          </>)}
 
-          <li>
-            <NavLink to="/dashboard/addFood" className={({ isActive }) =>
-              isActive
-                ? 'text-blue-600 underline font-semibold'
-                : 'text-gray-600 hover:text-blue-600'
-            }>
-              <FaPlusCircle className="inline-block mr-2" />
-              Add Food
-            </NavLink>
-          </li>
+          {/* ✅ Admin Routes */}
+          {role?.role === 'admin' && (
+            <>
+              <li className="mt-4 font-bold text-sm text-gray-500 uppercase">Admin Panel</li>
 
-          <li>
-            <NavLink to="/dashboard/myPostedFood" className={({ isActive }) =>
-              isActive
-                ? 'text-blue-600 underline font-semibold'
-                : 'text-gray-600 hover:text-blue-600'
-            }>
-              <FaUtensils className="inline-block mr-2" />
-              My Added Food
-            </NavLink>
-          </li>
+              <li>
+                <NavLink to="/dashboard" className={({ isActive }) =>
+                  isActive
+                    ? 'text-blue-600 underline font-semibold'
+                    : 'text-gray-600 hover:text-blue-600'
+                }>
+                  <FaTachometerAlt className="inline-block mr-2" />
+                  Admin Profile
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink to="/dashboard/myRequestedFood">
-              <FaHandshake className="inline-block mr-2" />
-              My Requested Food
-            </NavLink>
-          </li>
+              <li>
+                <NavLink to="/dashboard/manageMembers" className={({ isActive }) =>
+                  isActive
+                    ? 'text-blue-600 underline font-semibold'
+                    : 'text-gray-600 hover:text-blue-600'
+                }>
+                  <FaBoxOpen className="inline-block mr-2" />
+                  Manage Members
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/makeAnnouncement" className={({ isActive }) =>
+                  isActive
+                    ? 'text-blue-600 underline font-semibold'
+                    : 'text-gray-600 hover:text-blue-600'
+                }>
+                  <FaPlusCircle className="inline-block mr-2" />
+                  Make Announcement
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/agreementRequests" className={({ isActive }) =>
+                  isActive
+                    ? 'text-blue-600 underline font-semibold'
+                    : 'text-gray-600 hover:text-blue-600'
+                }>
+                  <FaHandshake className="inline-block mr-2" />
+                  Agreement Requests
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/manageCoupons" className={({ isActive }) =>
+                  isActive
+                    ? 'text-blue-600 underline font-semibold'
+                    : 'text-gray-600 hover:text-blue-600'
+                }>
+                  <FaBoxOpen className="inline-block mr-2" />
+                  Manage Coupons
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {/* Common Routes */}
+          
+
+        
         </ul>
       </div>
     </div>
