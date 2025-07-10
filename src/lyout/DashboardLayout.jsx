@@ -7,6 +7,7 @@ import {
   FaUtensils,
   FaHandshake,
   FaTachometerAlt,
+  FaUser, FaMoneyCheckAlt, FaHistory, FaBullhorn
 } from 'react-icons/fa';
 
 import Role from '../component/hooks/Role';
@@ -68,6 +69,50 @@ const DashboardLayout = () => {
             </div>
           </li>
 
+          {/* Member Profile  */}
+
+          {role?.role === 'member' &&(<>
+          <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
+
+           <li>
+            <NavLink
+            to="/dashboard"
+            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+          >
+            <FaUser /> My Profile
+          </NavLink>
+           </li>
+
+           <li>
+            <NavLink
+            to="/dashboard/member/payment"
+            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+          >
+            <FaMoneyCheckAlt /> Make Payment
+          </NavLink>
+           </li>
+          <li>
+            <NavLink
+            to="/dashboard/member/history"
+            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+          >
+            <FaHistory /> Payment History
+          </NavLink>
+          </li>
+          
+          <li>
+            <NavLink
+            to="/dashboard/announcement"
+            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+          >
+            <FaBullhorn /> Announcements
+          </NavLink>
+          </li>
+          
+          
+          
+          </>)}
+
           {/* User Profile */}
 
           {role?.role === 'user' && (
@@ -81,7 +126,7 @@ const DashboardLayout = () => {
                 : 'text-gray-600 hover:text-blue-600'
             }>
               <FaHome className="inline-block mr-2" />
-              My Profile
+             <FaUser /> My Profile
             </NavLink>
           </li>
           <li>
@@ -91,7 +136,7 @@ const DashboardLayout = () => {
                 : 'text-gray-600 hover:text-blue-600'
             }>
               <FaBoxOpen className="inline-block mr-2" />
-              Announcement
+             <FaBullhorn /> Announcement
             </NavLink>
           </li>
           </>)}

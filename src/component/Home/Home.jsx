@@ -10,13 +10,11 @@ import HomeHowItWorks from '../Pages/HomeHowItWorks';
 import CallAction from '../Pages/CallAction';
 import Role from '../hooks/Role';
 import UseAuth from '../hooks/UseAuth';
+import HomeCoupons from '../Pages/HomeCoupons';
 
 
 const Home = () => {
 
-const {user} = UseAuth()
-const {role} = Role()
-console.log(role);
 
     
     return (
@@ -29,6 +27,10 @@ console.log(role);
             
             </Slider>
 
+            </section>
+
+            <section>
+              <HomeCoupons></HomeCoupons>
             </section>
 
             <section className='p-2 text-center py-10'>
