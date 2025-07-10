@@ -5,7 +5,7 @@ import { formatDate } from '../API/utilities';
 const Announcements = () => {
   const axiosSecure = UseAxiosToken();
 
-  const { data: announcements = [], isLoading } = useQuery({
+  const { data: announcements = [], isLoading, } = useQuery({
     queryKey: ['announcements'],
     queryFn: async () => {
       const res = await axiosSecure.get('/announcements');

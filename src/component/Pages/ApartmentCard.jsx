@@ -17,12 +17,19 @@ const ApartmentCard = ({ apt, handleAgreement }) => {
         <p>Block: {apt.block}</p>
         <p>Rent: {apt.rent} TK</p>
         <div className="card-actions justify-end">
-          <button
-            className="btn btn-success"
-            onClick={() => handleAgreement(apt)}
-          >
-            Make Agreement
-          </button>
+          {
+          apt.booking?.status === 'checked' ? (
+            <p className="text-red-500 font-semibold mt-2">Already Booked</p>
+          ) : apt.booking?.status === 'pending' ? (
+            <p className="text-yellow-500 font-semibold mt-2">Pending Approval</p>
+          ) : (
+            <button
+              className="btn btn-primary mt-4"
+              onClick={() => handleAgreement(apt)}
+            >
+              Make Agreement
+            </button>
+          )}
         </div>
       </div>
     </div>
