@@ -40,9 +40,34 @@ const AgreementRequests = () => {
     if (confirm.isConfirmed) acceptMutation.mutate(id);
   };
 
+  // 3. Reject Agreement
+  const rejectMutation = useMutation({
+    mutationFn: async (id) => {
+      return await axiosSecure.patch(`/admin/agreements/${id}/reject`);
+    },
+    onSuccess: () => {
+      Swal.fire('Updated', 'Agreement rejected', 'info');
+      queryClient.invalidateQueries(['pendingAgreements']);
+    },
+    onError: () => {
+      Swal.fire('Error', 'Failed to reject', 'error');
+    }
+  });
   
+
+   const handleReject = async (id) => {
+    const confirm = await Swal.fire({
+      title: 'Reject agreement?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, reject',
+    });
+    if (confirm.isConfirmed) rejectMutation.mutate(id);
+  };
+
     
   
+console.log(agreements);
 
 
 
@@ -79,7 +104,7 @@ const AgreementRequests = () => {
                   <td>{a.block}</td>
                   <td>{a.apartmentNo}</td>
                   <td>{a.rent} TK</td>
-                  <td>{new Date(a.date).toLocaleDateString()}</td>
+                  <td>{new Date(a.bookingDate).toLocaleDateString()}</td>
                   <td className="flex gap-2">
                     <button
                       onClick={() => handleAccept(a._id)}
