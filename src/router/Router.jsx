@@ -21,6 +21,7 @@ import Dashboard from "../component/Dashboard/Dashboard";
 import Apartment from "../component/Pages/Apartment";
 import Announcements from "../component/Pages/Announcements";
 import ManageMembers from "../component/Profile/Admin/ManageMembers";
+import AgreementRequests from "../component/Profile/Admin/AgreementRequests";
   
   const router = createBrowserRouter([
     
@@ -85,12 +86,14 @@ import ManageMembers from "../component/Profile/Admin/ManageMembers";
          {
           path:'announcement',
           Component: Announcements,
-          // loader: ()=> fetch('http://localhost:3000/availableFood')
-        },
+         },
          {
           path:'/dashboard/manageMembers',
           Component: ManageMembers,
-          // loader: ()=> fetch('http://localhost:3000/availableFood')
+        },
+         {
+          path:'/dashboard/agreementRequests',
+          Component: AgreementRequests,
         },
         
      
