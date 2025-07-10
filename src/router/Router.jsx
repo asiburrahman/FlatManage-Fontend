@@ -20,6 +20,7 @@ import DashboardLayout from "../lyout/DashboardLayout";
 import Dashboard from "../component/Dashboard/Dashboard";
 import Apartment from "../component/Pages/Apartment";
 import Announcements from "../component/Pages/Announcements";
+import ManageMembers from "../component/Profile/Admin/ManageMembers";
   
   const router = createBrowserRouter([
     
@@ -86,20 +87,14 @@ import Announcements from "../component/Pages/Announcements";
           Component: Announcements,
           // loader: ()=> fetch('http://localhost:3000/availableFood')
         },
+         {
+          path:'/dashboard/manageMembers',
+          Component: ManageMembers,
+          // loader: ()=> fetch('http://localhost:3000/availableFood')
+        },
         
      
-        {
-          path: 'myRequestedFood',
-          element: <PrivetRoutes><MyRequestedFood></MyRequestedFood></PrivetRoutes>,
-          
-          
-        },
-
-        {
-          path: 'myPostedFood',
-          element: <PrivetRoutes><MyPostedFood></MyPostedFood></PrivetRoutes>,
-    
-        },
+       
         
       ]}
     
