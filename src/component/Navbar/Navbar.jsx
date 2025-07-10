@@ -31,35 +31,35 @@ const Navbar = () => {
 
   const link = <>
 
-    <li><NavLink to='/'  className={({ isActive }) =>
-    isActive
-      ? 'text-blue-600 underline font-semibold'
-      : 'text-gray-600 hover:text-blue-600'
-  }>Home</NavLink></li>
+    <li><NavLink to='/' className={({ isActive }) =>
+      isActive
+        ? 'text-blue-600 underline font-semibold'
+        : 'text-gray-600 hover:text-blue-600'
+    }>Home</NavLink></li>
     {/* { !user && <><li><NavLink to='/login'>Login</NavLink></li>
                   <li><NavLink to='/register'>Register</NavLink></li></>} */}
-    <li><NavLink to='/apartment'  className={({ isActive }) =>
-    isActive
-      ? 'text-blue-600 underline font-semibold'
-      : 'text-gray-600 hover:text-blue-600'
-  }>Apartment</NavLink></li>
+    <li><NavLink to='/apartment' className={({ isActive }) =>
+      isActive
+        ? 'text-blue-600 underline font-semibold'
+        : 'text-gray-600 hover:text-blue-600'
+    }>Apartment</NavLink></li>
     <li><NavLink to='/about' className={({ isActive }) =>
-    isActive
-      ? 'text-blue-600 underline font-semibold'
-      : 'text-gray-600 hover:text-blue-600'
-  }>About Us</NavLink></li>
+      isActive
+        ? 'text-blue-600 underline font-semibold'
+        : 'text-gray-600 hover:text-blue-600'
+    }>About Us</NavLink></li>
     <li><NavLink to='/contact' className={({ isActive }) =>
-    isActive
-      ? 'text-blue-600 underline font-semibold'
-      : 'text-gray-600 hover:text-blue-600'
-  }>Contact</NavLink></li>
+      isActive
+        ? 'text-blue-600 underline font-semibold'
+        : 'text-gray-600 hover:text-blue-600'
+    }>Contact</NavLink></li>
     {user && <>
 
-      <li><NavLink to='/dashboard'  className={({ isActive }) =>
-    isActive
-      ? 'text-blue-600 underline font-semibold'
-      : 'text-gray-600 hover:text-blue-600'
-  }>Dashboard</NavLink></li>
+      <li><NavLink to='/dashboard' className={({ isActive }) =>
+        isActive
+          ? 'text-blue-600 underline font-semibold'
+          : 'text-gray-600 hover:text-blue-600'
+      }>Dashboard</NavLink></li>
 
     </>
     }

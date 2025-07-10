@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "foodsharing-ce4a2"
-  }
+    "defauld": "manageflat-8f1f4"
+  },
+  "targets": {},
+  "etags": {}
 }
