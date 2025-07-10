@@ -23,6 +23,7 @@ import Announcements from "../component/Pages/Announcements";
 import ManageMembers from "../component/Profile/Admin/ManageMembers";
 import AgreementRequests from "../component/Profile/Admin/AgreementRequests";
 import AdminAnnouncementForm from "../component/Profile/Admin/AdminAnnouncementForm";
+import ManageCoupons from "../component/Profile/Admin/ManageCoupons";
   
   const router = createBrowserRouter([
     
@@ -99,6 +100,10 @@ import AdminAnnouncementForm from "../component/Profile/Admin/AdminAnnouncementF
          {
           path:'/dashboard/makeAnnouncement',
           Component: AdminAnnouncementForm,
+        },
+         {
+          path:'/dashboard/manageCoupons',
+          Component: ManageCoupons,
         },
         
      
