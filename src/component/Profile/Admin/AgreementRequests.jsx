@@ -16,6 +16,34 @@ const AgreementRequests = () => {
     }
   });
 
+   // 2. Accept Agreement
+  const acceptMutation = useMutation({
+    mutationFn: async (id) => {
+      return await axiosSecure.patch(`/admin/agreements/${id}/accept`);
+    },
+    onSuccess: () => {
+      Swal.fire('Success', 'Agreement accepted', 'success');
+      queryClient.invalidateQueries(['pendingAgreements']);
+    },
+    onError: () => {
+      Swal.fire('Error', 'Failed to accept', 'error');
+    }
+  });
+
+    const handleAccept = async (id) => {
+    const confirm = await Swal.fire({
+      title: 'Accept agreement?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, accept',
+    });
+    if (confirm.isConfirmed) acceptMutation.mutate(id);
+  };
+
+  
+    
+  
+
 
 
   return (
