@@ -37,7 +37,7 @@ const MakePayment = () => {
         setDiscount(0);
       }
     } catch (err) {
-      alert('Invalid coupon');
+      alert(`Invalid coupon ${err}`);
       setDiscount(0);
     }
   };

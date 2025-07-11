@@ -77,7 +77,12 @@ const DashboardLayout = () => {
            <li>
             <NavLink
             to="/dashboard"
-            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+            end
+            className={({ isActive }) =>
+                  isActive
+                    ? ' underline font-semibold'
+                    : ''
+                }
           >
             <FaUser /> My Profile
           </NavLink>
@@ -86,7 +91,11 @@ const DashboardLayout = () => {
            <li>
             <NavLink
             to="/dashboard/member/payment"
-            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+            className={({ isActive }) =>
+                  isActive
+                    ? ' underline font-semibold'
+                    : ''
+                }
           >
             <FaMoneyCheckAlt /> Make Payment
           </NavLink>
@@ -94,7 +103,11 @@ const DashboardLayout = () => {
           <li>
             <NavLink
             to="/dashboard/member/history"
-            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+            className={({ isActive }) =>
+                  isActive
+                    ? ' underline font-semibold'
+                    : ''
+                }
           >
             <FaHistory /> Payment History
           </NavLink>
@@ -103,7 +116,11 @@ const DashboardLayout = () => {
           <li>
             <NavLink
             to="/dashboard/announcement"
-            className={({ isActive }) => isActive ? 'text-blue-600 underline flex items-center gap-2' : 'text-gray-800 flex items-center gap-2'}
+            className={({ isActive }) =>
+                  isActive
+                    ? ' underline font-semibold'
+                    : ''
+                }
           >
             <FaBullhorn /> Announcements
           </NavLink>
@@ -120,21 +137,21 @@ const DashboardLayout = () => {
               <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
 
           <li>
-            <NavLink to="/dashboard" className={({ isActive }) =>
-              isActive
-                ? 'text-blue-600 underline font-semibold'
-                : 'text-gray-600 hover:text-blue-600'
-            }>
+            <NavLink  to="/dashboard" end className={({ isActive }) =>
+                  isActive
+                    ? ' underline font-semibold'
+                    : ''
+                }>
               
              <FaUser /> My Profile
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/announcement" className={({ isActive }) =>
-              isActive
-                ? 'text-blue-600 underline font-semibold'
-                : 'text-gray-600 hover:text-blue-600'
-            }>
+                  isActive
+                    ? ' underline font-semibold'
+                    : ''
+                }>
               
              <FaBullhorn /> Announcement
             </NavLink>
@@ -147,10 +164,10 @@ const DashboardLayout = () => {
               <li className="mt-4 font-bold text-sm text-gray-500 uppercase">Admin Panel</li>
 
               <li>
-                <NavLink to="/dashboard" className={({ isActive }) =>
+                <NavLink to="/dashboard" end className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-600 underline font-semibold'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? ' underline font-semibold'
+                    : ''
                 }>
                   <FaTachometerAlt className="inline-block mr-2" />
                   Admin Profile
@@ -160,8 +177,8 @@ const DashboardLayout = () => {
               <li>
                 <NavLink to="/dashboard/manageMembers" className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-600 underline font-semibold'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? ' underline font-semibold'
+                    : ''
                 }>
                   <FaBoxOpen className="inline-block mr-2" />
                   Manage Members
@@ -171,8 +188,8 @@ const DashboardLayout = () => {
               <li>
                 <NavLink to="/dashboard/makeAnnouncement" className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-600 underline font-semibold'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? ' underline font-semibold'
+                    : ''
                 }>
                   <FaPlusCircle className="inline-block mr-2" />
                   Make Announcement
@@ -182,8 +199,8 @@ const DashboardLayout = () => {
               <li>
                 <NavLink to="/dashboard/agreementRequests" className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-600 underline font-semibold'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? ' underline font-semibold'
+                    : ''
                 }>
                   <FaHandshake className="inline-block mr-2" />
                   Agreement Requests
@@ -193,8 +210,8 @@ const DashboardLayout = () => {
               <li>
                 <NavLink to="/dashboard/manageCoupons" className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-600 underline font-semibold'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? ' underline font-semibold'
+                    : ''
                 }>
                   <FaBoxOpen className="inline-block mr-2" />
                   Manage Coupons

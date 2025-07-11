@@ -5,7 +5,8 @@ import UseAxiosToken from '../hooks/UseAxiosToken';
 import Loading from '../Loading/Loading';
 
 const HomeCoupons = () => {
-  const axiosSecure = UseAxiosToken()
+  const axiosSecure = UseAxiosToken();
+
   const { data: coupons = [], isLoading } = useQuery({
     queryKey: ['activeCoupons'],
     queryFn: async () => {
@@ -15,22 +16,24 @@ const HomeCoupons = () => {
     }
   });
 
-  if(isLoading) return <Loading></Loading>
+  if (isLoading) return <Loading />;
 
   if (coupons.length === 0) return null;
 
   return (
-    <div className="my-8 bg-emerald-100 p-4 rounded-lg shadow-md">
-      <h2 className="text-xl font-bold text-center mb-4 text-emerald-700">🔥 Hot Coupons</h2>
-      <div className="flex flex-wrap justify-center gap-3">
-        {coupons.map(coupon => (
+    <div className="my-10 bg-primary/10 p-6 rounded-2xl shadow-lg border border-primary">
+      <h2 className="text-2xl font-bold text-center mb-6">🎁 Limited-Time Coupon Offers</h2>
+
+      <div className="flex flex-wrap justify-center gap-4">
+        {coupons.map((coupon, i) => (
           <div
             key={coupon._id}
-            className="flex items-center gap-2 bg-white px-3 py-2 rounded-md border border-emerald-300 shadow-sm hover:shadow-md transition"
+            className={`flex items-center gap-3  bg-warning
+             px-4 py-2 rounded-lg shadow-md hover:scale-105 transition-transform`}
           >
-            <FaTag className="text-emerald-500" />
-            <span className="font-semibold text-emerald-600">{coupon.code}</span>
-            <span className="text-sm text-gray-600">({coupon.discount}% off)</span>
+            <FaTag />
+            <span className="font-bold uppercase tracking-wide">{coupon.code}</span>
+            <span className="text-sm">({coupon.discount}% OFF)</span>
           </div>
         ))}
       </div>

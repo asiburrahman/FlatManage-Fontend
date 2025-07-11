@@ -26,6 +26,7 @@ import AdminAnnouncementForm from "../component/Profile/Admin/AdminAnnouncementF
 import ManageCoupons from "../component/Profile/Admin/ManageCoupons";
 import MakePayment from "../component/Profile/Member/Makepayment";
 import StripePayment from "../component/Profile/Member/StripePayment";
+import PaymentHistory from "../component/Profile/Member/PaymentHistory";
   
   const router = createBrowserRouter([
     
@@ -114,6 +115,10 @@ import StripePayment from "../component/Profile/Member/StripePayment";
          {
           path:'/dashboard/member/stripePayment',
           Component: StripePayment
+        },
+         {
+          path:'/dashboard/member/history',
+          Component: PaymentHistory
         },
         
      

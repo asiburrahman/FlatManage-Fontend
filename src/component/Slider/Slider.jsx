@@ -23,80 +23,120 @@ import 'swiper/css/scrollbar';
 
 const Slider = () => {
   const Slider1 = <>
-  <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
+    <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
 
-<div className=" flex-1">
+      <div className=" flex-1">
 
-  <h2 className="text-2xl lg:text-4xl font-bold py-1">
-  Share Excess, Spread Kindness
-  </h2>
-  <p className='w-11/12'>
-  Don't waste food — share it with those in need near you.
-  </p>
-  <button className="btn my-4 ">Get Started</button>
-</div>
+        <h2 className="text-2xl lg:text-4xl font-bold py-1">
+          Welcome to ManageFlat
+        </h2>
+        <p className='w-11/12'>
+          Simplifying your apartment living experience
+        </p>
+        <button className="btn my-4 ">Get Started</button>
+      </div>
 
-<div className="flex-1 rounded">
-  <img className='rounded-xl' src="./hungry1.jpg"  />
-</div>
-</div>
-
-
-</>
-
-const Slider3 = <>
-  <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
-
-<div className=" flex-1">
-
-  <h2 className="text-2xl lg:text-4xl font-bold py-1">
-  Zero Waste, Full Hearts
-  </h2>
-  <p className='w-11/12'>
-  Join our mission to reduce food waste and fight hunger — one meal at a time.
-  </p>
-  <button className="btn my-4 ">Get Started</button>
-</div>
-
-<div className="flex-1 rounded">
-  <img className='rounded-xl' src="./hungry2.jpg"  />
-</div>
-</div>
+      <div className="flex-1 rounded">
+        <img className='rounded-xl' src="./1.jpg" />
+      </div>
+    </div>
 
 
-</>
+  </>
 
-const Slider2 = <>
-  <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
+  const Slider3 = <>
+    <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
 
-<div className=" flex-1">
+      <div className=" flex-1">
 
-  <h2 className="text-2xl lg:text-4xl font-bold py-1">
-  Turn Leftovers into Hope
-  </h2>
-  <p className='w-11/12'>
-  Your extra meal could be someone’s only meal today.
-  </p>
-  <button className="btn my-4 ">Get Started</button>
-</div>
+        <h2 className="text-2xl lg:text-4xl font-bold py-1">
+          Hassle-Free Rent Payment
+        </h2>
+        <p className='w-11/12'>
+          Pay monthly rent online securely with Stripe.
+        </p>
+        <button className="btn my-4 ">Get Started</button>
+      </div>
 
-<div className="flex-1 rounded">
-  <img className='rounded-xl' src="./hungry3.jpg"  />
-</div>
-</div>
+      <div className="flex-1 rounded">
+        <img className='rounded-xl' src="./2.jpg" />
+      </div>
+    </div>
 
 
-</>
+  </>
 
-    return (
-        <Swiper 
-        
-        autoplay={{
-          delay: 3000, // 3 seconds
-          disableOnInteraction: false, // keeps autoplay after user interaction
-        }}
-        loop={true}
-          
+  const Slider2 = <>
+    <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
+
+      <div className=" flex-1">
+
+        <h2 className="text-2xl lg:text-4xl font-bold py-1">
+          Your Apartment Seamlessly
+        </h2>
+        <p className='w-11/12'>
+          View availability, send requests, and track agreement status.
+        </p>
+        <button className="btn my-4 ">Get Started</button>
+      </div>
+
+      <div className="flex-1 rounded">
+        <img className='rounded-xl' src="./3.jpg" />
+      </div>
+    </div>
+
+
+  </>
+  const Slider4 = <>
+    <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
+
+      <div className=" flex-1">
+
+        <h2 className="text-2xl lg:text-4xl font-bold py-1">
+          Your Personal Dashboard
+        </h2>
+        <p className='w-11/12'>
+          Profile, payments, agreements & more — all in one place
+        </p>
+        <button className="btn my-4 ">Get Started</button>
+      </div>
+
+      <div className="flex-1 rounded">
+        <img className='rounded-xl' src="./4.jpg" />
+      </div>
+    </div>
+    </>
+  const Slider5 = <>
+    <div className="flex flex-col justify-center lg:flex-row items-center p-12 lg:p-24">
+
+      <div className=" flex-1">
+
+        <h2 className="text-2xl lg:text-4xl font-bold py-1">
+          Use Coupons to Save on Rent
+        </h2>
+        <p className='w-11/12'>
+          Apply exclusive codes for monthly savings
+        </p>
+        <button className="btn my-4 ">Get Started</button>
+      </div>
+
+      <div className="flex-1 rounded">
+        <img className='rounded-xl' src="./5.jpg" />
+      </div>
+    </div>
+
+
+  </>
+
+  return (
+    <Swiper
+
+      autoplay={{
+        delay: 3000, // 3 seconds
+        disableOnInteraction: false, // keeps autoplay after user interaction
+      }}
+      loop={true}
+
 
 
       // install Swiper modules
@@ -105,17 +145,19 @@ const Slider2 = <>
       slidesPerView={1}
       navigation
       pagination={{ clickable: true }}
-      
-      // onSwiper={(swiper) => }
-      // onSlideChange={() => console.log('slide change')}
 
-      
+    // onSwiper={(swiper) => }
+    // onSlideChange={() => console.log('slide change')}
+
+
     >
       <SwiperSlide >{Slider1}</SwiperSlide>
       <SwiperSlide>{Slider2}</SwiperSlide>
       <SwiperSlide>{Slider3}</SwiperSlide>
+      <SwiperSlide>{Slider4}</SwiperSlide>
+      <SwiperSlide>{Slider5}</SwiperSlide>
     </Swiper>
-    );
+  );
 };
 
 export default Slider;

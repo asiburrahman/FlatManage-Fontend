@@ -15,7 +15,7 @@ const AdminAnnouncementForm = () => {
         Swal.fire('Success!', 'Announcement has been posted.', 'success');
         reset();
       }
-    } catch (error) {
+    } catch  {
       Swal.fire('Error', 'Failed to post announcement.', 'error');
     }
   };

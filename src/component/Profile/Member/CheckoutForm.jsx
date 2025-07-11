@@ -4,11 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { ClipLoader } from "react-spinners";
 import UseAxiosToken from '../../hooks/UseAxiosToken';
 import useAuth from '../../hooks/UseAuth';
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const CheckoutForm = ({paymentInfo}) => {
-  const {rent, month, floor, email, discount, block, apartment} = paymentInfo || []
+  const {rent} = paymentInfo || []
  
   const axiosSecure = UseAxiosToken()
   const stripe = useStripe();
@@ -116,7 +115,7 @@ const CheckoutForm = ({paymentInfo}) => {
           options={{
             style: {
               base: {
-                fontSize: '14px',
+                fontSize: '12px',
                 color: '#424770',
                 '::placeholder': {
                   color: '#aab7c4',

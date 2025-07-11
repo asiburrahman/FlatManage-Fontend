@@ -1,169 +1,159 @@
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React, { use, useState } from 'react';
+import React, {  useState } from 'react';
 import { NavLink } from 'react-router';
-import { AuthContext } from '../../context/AuthContext';
-import { toast } from 'react-toastify';
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
-import { TbFidgetSpinner } from 'react-icons/tb'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+import { TbFidgetSpinner } from 'react-icons/tb';
 import { saveUserDataInDB, uploadImage } from '../API/utilities';
-// import { auth } from '../../firebase.init';
+import 'react-toastify/dist/ReactToastify.css';
+import useAuth from '../hooks/UseAuth';
 
 const Register = () => {
-  const userInfo = use(AuthContext)
-  const [showPassword, setShowPassword] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const { googleSignin, createUser, updateUserProfile, setUser,  loading } = userInfo
+  const {
+    googleSignin,
+    createUser,
+    updateUserProfile,
+    setUser,
+    loading,
+  } = useAuth();
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = async(e) => {
-    e.preventDefault()
-    // const name = e.target.name.value
-    const name = e.target.name.value
-    const email = e.target.mail.value
-    const password = e.target.password.value
-    const imageData = e?.target?.image?.files[0]
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.mail.value;
+    const password = e.target.password.value;
+    const imageData = e.target.image.files[0];
 
-    // image url response from imgbb
-    const photoUrl = await uploadImage(imageData)
+    const passwordCheck = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
-    setErrorMessage('')
-
-    const passwordCheker = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
-
-    if (passwordCheker.test(password) === false) {
-      setErrorMessage("Password must have one lowercase, one uppercase, one digit and 6 characters or longer")
-
-      return;
+    if (!passwordCheck.test(password)) {
+      return toast.error(
+        'Password must contain uppercase, lowercase, digit and be at least 6 characters long.'
+      );
     }
 
+    try {
+      const photoUrl = await uploadImage(imageData);
+      const result = await createUser(email, password);
+      const userInfo = result.user;
 
+      await updateUserProfile(name, photoUrl);
+      setUser({ ...userInfo, displayName: name, photoURL: photoUrl });
 
+      await saveUserDataInDB({ name, email, image: photoUrl });
 
-   
-    createUser(email, password).then(result => {
-      // console.log(result);
-      const userinfo = result.user
-      updateUserProfile(name, photoUrl).then(async() => {
+      toast.success('Account created successfully!');
+    } catch (error) {
+      const message = error?.message || 'Registration failed';
+      setErrorMessage(message);
+      toast.error(message);
+    }
+  };
 
-        setUser({ ...userinfo, name, photoUrl })
-        console.log(userinfo);
-        toast.success("User Create Successful!!");
-        // setUser({...user, displayName: name, photoURL: photoUrl})
-        // console.log(user);
-       
-
-      const userData = {
-        name,
-        email,
-        image: photoUrl,
-      }
-      // Save user data in db
-      await saveUserDataInDB(userData)
-
-
-      }).catch((error) => {
-
-
-        setErrorMessage(error.message);
-        setUser(userinfo)
-
-      });
-
-
-    }).catch(error => {
-      setErrorMessage(error.message);
-
-
-    })
-
-
-
-  }
-
-  if (errorMessage) {
-    toast.error(errorMessage);
-  }
-
-  const handleGoogleSignin = () => {
-
-    setErrorMessage('')
-    googleSignin().then(async(result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // The signed-in user info.
+  const handleGoogleSignin = async () => {
+    try {
+      const result = await googleSignin();
       const user = result.user;
-      // console.log(user);
-      setUser(user)
-      const userData = {
-        name: result?.user?.displayName,
-        email: result?.user?.email,
-        image: result?.user?.photoURL,
-      }
-      await saveUserDataInDB(userData)
-
-      // navigate(location?.state || '/')
-      toast.success("User Login Successfully By Google");
-
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      setErrorMessage(errorCode);
-      const errorMessage = error.message;
-
-      setErrorMessage(errorMessage);
-      // The email of the user's account used.
-      const email = error.customData.email;
-      setErrorMessage(email);
-      // The AuthCredential type that was used.
-      const credential = <GoogleAuthProvider></GoogleAuthProvider>;
-      setErrorMessage(credential);
-      // ...
-    });
-  }
-
+      setUser(user);
+      await saveUserDataInDB({
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+      });
+      toast.success('Logged in with Google!');
+    } catch (error) {
+      const msg = error.message || 'Google login failed';
+      setErrorMessage(msg);
+      toast.error(msg);
+    }
+  };
 
   return (
-    <div className="card bg-base-100 mt-20 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-base-300 px-4">
       <ToastContainer />
-      <div className="card-body">
-        <h1 className="text-2xl font-bold text-center">Register now!</h1>
-        <form onSubmit={handleRegister} className="fieldset">
-          <label className="label">User Name</label>
-          <input required type="text" className="input" name='name' placeholder="User Name" />
-          <label className="label" >Select a image</label>
-          <input className='cursor-pointer'type='file' id='image' name='image'accept='image/*'/>
-          <label className="label" >Email</label>
-          <input required type="email" className="input" name='mail' placeholder="Email" />
-          <label className="label">Password</label>
-          <div className='relative'>
-            <input required type={showPassword ? "text" : "password"} className="input" name='password' placeholder="Password" />
-            <button onClick={(e) => { e.preventDefault(), setShowPassword(!showPassword) }} className='btn btn-xs absolute top-2 right-6'>{showPassword ? <FaEye /> : <FaEyeSlash />} </button>
+      <div className="card w-full max-w-sm  shadow-xl rounded-lg p-6">
+        <h2 className="text-3xl font-bold text-center text-primary mb-6">Register</h2>
+
+        <form onSubmit={handleRegister} className="space-y-4">
+          <div>
+            <label className="label">Name</label>
+            <input
+              required
+              type="text"
+              name="name"
+              className="input input-bordered w-full"
+              placeholder="Your Name"
+            />
+          </div>
+          <div>
+            <label className="label">Profile Image</label>
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              className="file-input file-input-bordered w-full"
+              required
+            />
+          </div>
+          <div>
+            <label className="label">Email</label>
+            <input
+              required
+              type="email"
+              name="mail"
+              className="input input-bordered w-full"
+              placeholder="Email"
+            />
+          </div>
+          <div>
+            <label className="label">Password</label>
+            <div className="relative">
+              <input
+                required
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                className="input input-bordered w-full"
+                placeholder="Password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-2.5 right-4 text-lg"
+              >
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
+              </button>
+            </div>
           </div>
 
-          {/* (?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,} */}
-          <button className="btn btn-neutral mt-4"> {loading ? (
-                <TbFidgetSpinner className='animate-spin m-auto' />
-              ) : (
-                'Register'
-              )}</button>
+          <button className="btn btn-primary w-full">
+            {loading ? <TbFidgetSpinner className="animate-spin" /> : 'Register'}
+          </button>
         </form>
 
-        <div className=' text-md font-bold text-center text-emerald-300'>Login With Google</div>
-        <button onClick={handleGoogleSignin} className="btn bg-emerald-300 mt-1">Google Login</button>
+        <div className="divider">OR</div>
 
-        <p>If You Already Have Account  <NavLink className='text-blue-400' to='/login'>Please Login</NavLink> </p>
-        {errorMessage && <p className='text-red-600 font-bold pt-1'>{errorMessage}</p>
+        <button
+          onClick={handleGoogleSignin}
+          className="btn w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-100"
+        >
+          <FcGoogle className="text-xl mr-2" />
+          Continue with Google
+        </button>
 
-        }
+        <p className="text-sm text-center mt-4">
+          Already have an account?{' '}
+          <NavLink to="/login" className="text-primary font-semibold hover:underline">
+            Login here
+          </NavLink>
+        </p>
 
+        {errorMessage && (
+          <p className="text-red-600 text-sm font-medium text-center mt-2">{errorMessage}</p>
+        )}
       </div>
-
     </div>
   );
 };
