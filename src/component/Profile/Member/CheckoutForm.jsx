@@ -80,7 +80,27 @@ const CheckoutForm = ({paymentInfo}) => {
     console.log(result);
 
 
-
+    if (result?.error) {
+      setCardError(result?.error?.message)
+      return
+    }
+    if (result?.paymentIntent?.status === 'succeeded') {
+      // save order data in db
+      paymentInfo.transactionId = result?.paymentIntent?.id
+      try {
+        const { data } = await axiosSecure.post('/member/payment/success', paymentInfo )
+        console.log(data)
+        if (data?.insertedId) {
+          Swal.fire('Success!', 'Payment successfully.', 'success');
+          setProcessing(false)
+        }
+      }catch(error){
+        console.log(error.message);
+        
+      }
+    
+    
+  };
 
 }
 
