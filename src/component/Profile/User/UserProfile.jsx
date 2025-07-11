@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/UseAuth';
 import UseAxiosToken from '../../hooks/UseAxiosToken';
 import { formatDate } from '../../API/utilities';
+import Loading from '../../Loading/Loading';
 
 const UserProfile = () => {
   const { user } = useAuth();
@@ -17,9 +18,8 @@ const UserProfile = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center mt-10">Loading profile...</p>;
+  if (isLoading) return <Loading></Loading>
 
-  const isApproved = agreement?.status === 'approved';
   const isPending = agreement?.status === 'pending';
 
   return (
@@ -35,9 +35,9 @@ const UserProfile = () => {
         <p><span className="font-semibold">Agreement Status:</span> {agreement?.status || 'none'}</p>
           <p><strong>Booking Date:</strong> {formatDate(agreement?.bookingDate)}</p>
         <p><strong>Accept Date:</strong> {formatDate(agreement?.acceptDate)}</p>
-        <p><span className="font-semibold">Floor:</span> {isApproved ? agreement.floor : isPending ? agreement.floor + ' (Pending)' : 'none'}</p>
-        <p><span className="font-semibold">Block:</span> {isApproved ? agreement.block : isPending ? agreement.block + ' (Pending)' : 'none'}</p>
-        <p><span className="font-semibold">Apartment No:</span> {isApproved ? agreement.apartmentNo : isPending ? agreement.apartmentNo + ' (Pending)' : 'none'}</p>
+        <p><span className="font-semibold">Floor:</span> {isPending ? agreement.floor + ' (Pending)' : 'none'}</p>
+        <p><span className="font-semibold">Block:</span> {isPending ? agreement.block + ' (Pending)' : 'none'}</p>
+        <p><span className="font-semibold">Apartment No:</span> { isPending ? agreement.apartmentNo + ' (Pending)' : 'none'}</p>
       </div>
     </div>
   );

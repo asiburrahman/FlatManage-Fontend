@@ -125,7 +125,7 @@ const DashboardLayout = () => {
                 ? 'text-blue-600 underline font-semibold'
                 : 'text-gray-600 hover:text-blue-600'
             }>
-              <FaHome className="inline-block mr-2" />
+              
              <FaUser /> My Profile
             </NavLink>
           </li>
@@ -135,7 +135,7 @@ const DashboardLayout = () => {
                 ? 'text-blue-600 underline font-semibold'
                 : 'text-gray-600 hover:text-blue-600'
             }>
-              <FaBoxOpen className="inline-block mr-2" />
+              
              <FaBullhorn /> Announcement
             </NavLink>
           </li>
