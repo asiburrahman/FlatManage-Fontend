@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router'; 
+import { Link, NavLink, Outlet } from 'react-router';
 import {
   FaHome,
   FaBoxOpen,
@@ -62,72 +62,74 @@ const DashboardLayout = () => {
           {/* Logo */}
           <li className="mb-4">
             <div className="flex items-center justify-center gap-2">
-              <img className="w-10 h-10 rounded-full" src="/Food.jpg" alt="Logo" />
+              <img className="w-10 h-10 rounded-full" src="/logo.png" alt="Logo" />
               <Link to="/" className="text-sm font-bold md:text-2xl lg:text-3xl">
-                Food<span className="text-accent">Neighbor</span>
+                <span className='text-primary'>
+                  Manage<span className="text-warning">Flat</span>
+                </span>
               </Link>
             </div>
           </li>
 
           {/* Member Profile  */}
 
-          {role?.role === 'member' &&(<>
-          <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
+          {role?.role === 'member' && (<>
+            <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
 
-           <li>
-            <NavLink
-            to="/dashboard"
-            end
-            className={({ isActive }) =>
+            <li>
+              <NavLink
+                to="/dashboard"
+                end
+                className={({ isActive }) =>
                   isActive
                     ? ' underline font-semibold'
                     : ''
                 }
-          >
-            <FaUser /> My Profile
-          </NavLink>
-           </li>
+              >
+                <FaUser /> My Profile
+              </NavLink>
+            </li>
 
-           <li>
-            <NavLink
-            to="/dashboard/member/payment"
-            className={({ isActive }) =>
+            <li>
+              <NavLink
+                to="/dashboard/member/payment"
+                className={({ isActive }) =>
                   isActive
                     ? ' underline font-semibold'
                     : ''
                 }
-          >
-            <FaMoneyCheckAlt /> Make Payment
-          </NavLink>
-           </li>
-          <li>
-            <NavLink
-            to="/dashboard/member/history"
-            className={({ isActive }) =>
+              >
+                <FaMoneyCheckAlt /> Make Payment
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/member/history"
+                className={({ isActive }) =>
                   isActive
                     ? ' underline font-semibold'
                     : ''
                 }
-          >
-            <FaHistory /> Payment History
-          </NavLink>
-          </li>
-          
-          <li>
-            <NavLink
-            to="/dashboard/announcement"
-            className={({ isActive }) =>
+              >
+                <FaHistory /> Payment History
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/dashboard/announcement"
+                className={({ isActive }) =>
                   isActive
                     ? ' underline font-semibold'
                     : ''
                 }
-          >
-            <FaBullhorn /> Announcements
-          </NavLink>
-          </li>
-          
-          
-          
+              >
+                <FaBullhorn /> Announcements
+              </NavLink>
+            </li>
+
+
+
           </>)}
 
           {/* User Profile */}
@@ -136,27 +138,27 @@ const DashboardLayout = () => {
             <>
               <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
 
-          <li>
-            <NavLink  to="/dashboard" end className={({ isActive }) =>
+              <li>
+                <NavLink to="/dashboard" end className={({ isActive }) =>
                   isActive
                     ? ' underline font-semibold'
                     : ''
                 }>
-              
-             <FaUser /> My Profile
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/announcement" className={({ isActive }) =>
+
+                  <FaUser /> My Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/announcement" className={({ isActive }) =>
                   isActive
                     ? ' underline font-semibold'
                     : ''
                 }>
-              
-             <FaBullhorn /> Announcement
-            </NavLink>
-          </li>
-          </>)}
+
+                  <FaBullhorn /> Announcement
+                </NavLink>
+              </li>
+            </>)}
 
           {/* ✅ Admin Routes */}
           {role?.role === 'admin' && (
@@ -221,9 +223,9 @@ const DashboardLayout = () => {
           )}
 
           {/* Common Routes */}
-          
 
-        
+
+
         </ul>
       </div>
     </div>
