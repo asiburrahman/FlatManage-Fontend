@@ -1,12 +1,38 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { ClipLoader } from "react-spinners";
+import UseAxiosToken from '../../hooks/UseAxiosToken';
+import useAuth from '../../hooks/UseAuth';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({paymentInfo}) => {
+  const {rent, month, floor, email, discount, block, apartment} = paymentInfo || []
+ 
+  const axiosSecure = UseAxiosToken()
   const stripe = useStripe();
   const elements = useElements();
+  const [cardError, setCardError] = useState(null)
+  const [processing, setProcessing] = useState(false)
+  const [clientSecret, setClientSecret] = useState('')
+  const {user} = useAuth()
+
+  useEffect(() => {
+    const getClientSecret = async () => {
+      // server request...
+      const { data } = await axiosSecure.post('/create-payment-secret', {
+        paymentInfo
+      })
+      setClientSecret(data?.clientSecret)
+    }
+    getClientSecret()
+  }, [axiosSecure, paymentInfo])
+  console.log(clientSecret);
+  
 
   const handleSubmit = async (event) => {
+    setProcessing(true)
     // Block native form submission.
     event.preventDefault();
 
@@ -33,10 +59,30 @@ const CheckoutForm = () => {
 
     if (error) {
       console.log('[error]', error);
+      setCardError(error.message)
+      setProcessing(false)
+      return
     } else {
       console.log('[PaymentMethod]', paymentMethod);
     }
-  };
+
+
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card,
+        billing_details: {
+          name: user?.displayName,
+          email: user?.email,
+        },
+      },
+    })
+
+    console.log(result);
+
+
+
+
+}
 
   return (
     <div className="w-11/12 md:w-5/12  mx-auto mt-16 p-8 bg-white rounded-xl shadow-lg">
@@ -62,12 +108,13 @@ const CheckoutForm = () => {
             },
           }}
         />
+        {cardError && <p className='text-red-600 '>{cardError}</p> }
         <button
           type="submit"
-          disabled={!stripe}
-          className="btn btn-primary w-full text-white"
+          disabled={!stripe || processing}
+          className="btn btn-primary w-full text-white space-x-1"
         >
-          Pay Now
+         {processing ? <ClipLoader></ClipLoader> :`Pay Now ${rent}` } 
         </button>
       </form>
     </div>

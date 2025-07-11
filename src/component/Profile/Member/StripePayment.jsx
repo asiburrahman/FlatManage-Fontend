@@ -11,13 +11,13 @@ const StripePayment = () => {
   const paymentInfo = location.state;
   console.log(paymentInfo);
   
-console.log(stripePromise);
+  
 
 
     return (
         <Elements
          stripe={stripePromise}>
-            <CheckoutForm />
+            <CheckoutForm paymentInfo={paymentInfo} />
         </Elements>
     );
 };
