@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/UseAuth';
 import UseAxiosToken from '../../hooks/UseAxiosToken';
+import Loading from '../../Loading/Loading';
 
 const MemberProfile = () => {
   const { user } = useAuth();
@@ -16,6 +17,9 @@ const MemberProfile = () => {
       return data;
     },
   });
+
+  console.log(agreement);
+  
 
   const profileData = {
     name: user?.displayName,
@@ -31,6 +35,7 @@ const MemberProfile = () => {
             floor: agreement?.floor,
             block: agreement?.block,
             apartmentNo: agreement?.apartmentNo,
+            rent: agreement.rent
           }
         : {
             floor: 'N/A',
@@ -39,39 +44,49 @@ const MemberProfile = () => {
           },
   };
 
-  if (isLoading) return <div className="text-center">Loading...</div>;
+  if (isLoading) return <Loading></Loading>;
 
   const { name, email, image, agreementDate, apartmentInfo } = profileData;
-  const { floor, block, apartmentNo } = apartmentInfo || {};
+  const { floor, block, apartmentNo, rent } = apartmentInfo || {};
 
   return (
-    <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6">
-      <div className="flex items-center space-x-4">
-        <img
-          src={image}
-          alt={name}
-          className="w-20 h-20 rounded-full object-cover"
-        />
-        <div>
-          <h2 className="text-xl font-semibold">{name}</h2>
-          <p className="text-gray-600">{email}</p>
-        </div>
-      </div>
-      <div className="mt-6 space-y-2">
-        <p>
-          <strong>Agreement Date:</strong> {agreementDate || 'N/A'}
-        </p>
-        <p>
-          <strong>Floor:</strong> {floor || 'N/A'}
-        </p>
-        <p>
-          <strong>Block:</strong> {block || 'N/A'}
-        </p>
-        <p>
-          <strong>Apartment No:</strong> {apartmentNo || 'N/A'}
-        </p>
+   <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+  <div className="max-w-xl w-full bg-white shadow-xl rounded-xl p-8">
+    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <img
+        src={image}
+        alt={name}
+        className="w-24 h-24 rounded-full object-cover shadow"
+      />
+      <div>
+        <h2 className="text-2xl font-bold text-gray-800">{name}</h2>
+        <p className="text-gray-600">{email}</p>
       </div>
     </div>
+    <div className="mt-6 border-t pt-4 space-y-3 text-gray-700">
+      <p>
+        <span className="font-semibold">Agreement Date:</span>{' '}
+        {agreementDate || 'N/A'}
+      </p>
+      <p>
+        <span className="font-semibold">Rent:</span>{' '}
+        {rent || 'N/A'}
+      </p>
+      <p>
+        <span className="font-semibold">Floor:</span>{' '}
+        {floor || 'N/A'}
+      </p>
+      <p>
+        <span className="font-semibold">Block:</span>{' '}
+        {block || 'N/A'}
+      </p>
+      <p>
+        <span className="font-semibold">Apartment No:</span>{' '}
+        {apartmentNo || 'N/A'}
+      </p>
+    </div>
+  </div>
+</div>
   );
 };
 

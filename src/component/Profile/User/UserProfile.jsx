@@ -23,23 +23,48 @@ const UserProfile = () => {
   const isPending = agreement?.status === 'pending';
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-base-200 rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
-      <div className="flex flex-col items-center">
-        <img src={user.photoURL} alt="Profile" className="w-24 h-24 rounded-full mb-4" />
-        <h3 className="text-lg font-semibold">{user.displayName}</h3>
-        <p className="text-sm text-gray-600">{user.email}</p>
-      </div>
-
-      <div className="mt-6 space-y-2">
-        <p><span className="font-semibold">Agreement Status:</span> {agreement?.status || 'none'}</p>
-          <p><strong>Booking Date:</strong> {formatDate(agreement?.bookingDate)}</p>
-        <p><strong>Accept Date:</strong> {formatDate(agreement?.acceptDate)}</p>
-        <p><span className="font-semibold">Floor:</span> {isPending ? agreement.floor + ' (Pending)' : 'none'}</p>
-        <p><span className="font-semibold">Block:</span> {isPending ? agreement.block + ' (Pending)' : 'none'}</p>
-        <p><span className="font-semibold">Apartment No:</span> { isPending ? agreement.apartmentNo + ' (Pending)' : 'none'}</p>
-      </div>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+  <div className="max-w-md w-full bg-white shadow-xl rounded-xl p-8">
+    <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">My Profile</h2>
+    
+    <div className="flex flex-col items-center">
+      <img
+        src={user.photoURL}
+        alt="Profile"
+        className="w-24 h-24 rounded-full object-cover shadow mb-4"
+      />
+      <h3 className="text-xl font-semibold text-gray-800">{user.displayName}</h3>
+      <p className="text-sm text-gray-500">{user.email}</p>
     </div>
+
+    <div className="mt-6 space-y-3 border-t pt-4 text-gray-700">
+      <p>
+        <span className="font-semibold">Agreement Status:</span>{' '}
+        {agreement?.status || 'None'}
+      </p>
+      <p>
+        <span className="font-semibold">Booking Date:</span>{' '}
+        {formatDate(agreement?.bookingDate) || 'N/A'}
+      </p>
+      <p>
+        <span className="font-semibold">Accept Date:</span>{' '}
+        {formatDate(agreement?.acceptDate) || 'N/A'}
+      </p>
+      <p>
+        <span className="font-semibold">Floor:</span>{' '}
+        {isPending ? `${agreement.floor} (Pending)` : 'None'}
+      </p>
+      <p>
+        <span className="font-semibold">Block:</span>{' '}
+        {isPending ? `${agreement.block} (Pending)` : 'None'}
+      </p>
+      <p>
+        <span className="font-semibold">Apartment No:</span>{' '}
+        {isPending ? `${agreement.apartmentNo} (Pending)` : 'None'}
+      </p>
+    </div>
+  </div>
+</div>
   );
 };
 
