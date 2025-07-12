@@ -7,16 +7,30 @@ import {
   FaUtensils,
   FaHandshake,
   FaTachometerAlt,
-  FaUser, FaMoneyCheckAlt, FaHistory, FaBullhorn
+  FaUser,
+  FaMoneyCheckAlt,
+  FaHistory,
+  FaBullhorn,
+  FaSignOutAlt
 } from 'react-icons/fa';
 
+import useAuth from '../component/hooks/UseAuth';
 import Role from '../component/hooks/Role';
 import Loading from '../component/Loading/Loading';
+ // ✅ Import useAuth
 
 const DashboardLayout = () => {
   const { role, isLoading } = Role();
+  const { singOutUser } = useAuth(); // ✅ use logOut from auth
 
-  // ✅ FIXED: return loading component
+  const handleLogout = async () => {
+    try {
+      await singOutUser();
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
+
   if (isLoading) return <Loading />;
 
   return (
@@ -71,161 +85,91 @@ const DashboardLayout = () => {
             </div>
           </li>
 
-          {/* Member Profile  */}
-
-          {role?.role === 'member' && (<>
-            <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
-
-            <li>
-              <NavLink
-                to="/dashboard"
-                end
-                className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }
-              >
-                <FaUser /> My Profile
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/member/payment"
-                className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }
-              >
-                <FaMoneyCheckAlt /> Make Payment
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/dashboard/member/history"
-                className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }
-              >
-                <FaHistory /> Payment History
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/dashboard/announcement"
-                className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }
-              >
-                <FaBullhorn /> Announcements
-              </NavLink>
-            </li>
-
-
-
-          </>)}
-
-          {/* User Profile */}
-
-          {role?.role === 'user' && (
+          {/* Member Panel */}
+          {role?.role === 'member' && (
             <>
-              <li className="mt-4 font-bold text-sm text-gray-500 uppercase">User Panel</li>
-
+              <li className="mt-4 font-bold text-sm uppercase">User Panel</li>
               <li>
-                <NavLink to="/dashboard" end className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-
+                <NavLink to="/dashboard" end className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
                   <FaUser /> My Profile
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/announcement" className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-
-                  <FaBullhorn /> Announcement
+                <NavLink to="/dashboard/member/payment" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaMoneyCheckAlt /> Make Payment
                 </NavLink>
               </li>
-            </>)}
-
-          {/* ✅ Admin Routes */}
-          {role?.role === 'admin' && (
-            <>
-              <li className="mt-4 font-bold text-sm text-gray-500 uppercase">Admin Panel</li>
-
               <li>
-                <NavLink to="/dashboard" end className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-                  <FaTachometerAlt className="inline-block mr-2" />
-                  Admin Profile
+                <NavLink to="/dashboard/member/history" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaHistory /> Payment History
                 </NavLink>
               </li>
-
               <li>
-                <NavLink to="/dashboard/manageMembers" className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-                  <FaBoxOpen className="inline-block mr-2" />
-                  Manage Members
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/dashboard/makeAnnouncement" className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-                  <FaPlusCircle className="inline-block mr-2" />
-                  Make Announcement
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/dashboard/agreementRequests" className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-                  <FaHandshake className="inline-block mr-2" />
-                  Agreement Requests
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/dashboard/manageCoupons" className={({ isActive }) =>
-                  isActive
-                    ? ' underline font-semibold'
-                    : ''
-                }>
-                  <FaBoxOpen className="inline-block mr-2" />
-                  Manage Coupons
+                <NavLink to="/dashboard/announcement" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaBullhorn /> Announcements
                 </NavLink>
               </li>
             </>
           )}
 
-          {/* Common Routes */}
+          {/* User Panel */}
+          {role?.role === 'user' && (
+            <>
+              <li className="mt-4 font-bold text-sm uppercase">User Panel</li>
+              <li>
+                <NavLink to="/dashboard" end className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaUser /> My Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/announcement" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaBullhorn /> Announcement
+                </NavLink>
+              </li>
+            </>
+          )}
 
+          {/* Admin Panel */}
+          {role?.role === 'admin' && (
+            <>
+              <li className="mt-4 font-bold text-sm uppercase">Admin Panel</li>
+              <li>
+                <NavLink to="/dashboard" end className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaTachometerAlt /> Admin Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageMembers" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaBoxOpen /> Manage Members
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/makeAnnouncement" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaPlusCircle /> Make Announcement
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/agreementRequests" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaHandshake /> Agreement Requests
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageCoupons" className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
+                  <FaBoxOpen /> Manage Coupons
+                </NavLink>
+              </li>
+            </>
+          )}
 
-
+          {/* Logout Button (All Roles) */}
+          <li className="mt-6">
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-left hover:underline font-semibold"
+            >
+              <FaSignOutAlt /> Logout
+            </button>
+          </li>
         </ul>
       </div>
     </div>

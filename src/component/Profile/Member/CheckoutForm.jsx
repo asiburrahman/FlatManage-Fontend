@@ -5,6 +5,7 @@ import { ClipLoader } from "react-spinners";
 import UseAxiosToken from '../../hooks/UseAxiosToken';
 import useAuth from '../../hooks/UseAuth';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const CheckoutForm = ({paymentInfo}) => {
   const {rent} = paymentInfo || []
@@ -16,6 +17,7 @@ const CheckoutForm = ({paymentInfo}) => {
   const [processing, setProcessing] = useState(false)
   const [clientSecret, setClientSecret] = useState('')
   const {user} = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getClientSecret = async () => {
@@ -92,6 +94,8 @@ const CheckoutForm = ({paymentInfo}) => {
         if (data?.insertedId) {
           Swal.fire('Success!', 'Payment successfully.', 'success');
           setProcessing(false)
+          navigate('/dashboard/member/history')
+          
         }
       }catch(error){
         console.log(error.message);

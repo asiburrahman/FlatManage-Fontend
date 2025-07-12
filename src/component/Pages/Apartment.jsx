@@ -17,7 +17,7 @@ const Apartment = () => {
 
   const queryClient = useQueryClient();
 
-  // ✅ Fetch apartments
+  //  Fetch apartments
   const {
     data: apartments = [],
     isLoading,
@@ -30,7 +30,7 @@ const Apartment = () => {
     },
   });
 
-  // ✅ Submit agreement mutation
+  //  Submit agreement mutation
   const agreementMutation = useMutation({
     mutationFn: async (apt) => {
       const agreementData = {
@@ -60,7 +60,7 @@ const Apartment = () => {
     },
   });
 
-  // ✅ Handle agreement with SweetAlert confirmation
+  //  Handle agreement with SweetAlert confirmation
   const handleAgreement = (apt) => {
     if (!user) return navigate('/login');
 
@@ -79,7 +79,7 @@ const Apartment = () => {
     });
   };
 
-  // ✅ Rent filtering
+  //  Rent filtering
   const filtered = apartments.filter((apt) => {
     const rent = apt.rent;
     const min = minRent ? parseInt(minRent) : 0;
@@ -87,7 +87,7 @@ const Apartment = () => {
     return rent >= min && rent <= max;
   });
 
-  // ✅ Pagination
+  // Pagination
   const startIndex = (page - 1) * itemsPerPage;
   const selected = filtered.slice(startIndex, startIndex + itemsPerPage);
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
@@ -122,8 +122,7 @@ const Apartment = () => {
 
       {/* Apartment Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {selected.map((apt) => (
-          <ApartmentCard
+        {selected.map((apt) => (<ApartmentCard
             key={apt._id}
             apt={apt}
             handleAgreement={handleAgreement}

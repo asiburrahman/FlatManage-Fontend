@@ -16,11 +16,11 @@ const TypewriterText = () => {
         Welcome to {' '}
         <span
           style={{  fontWeight: 'bold' }}
-          className='text-accent'
+          className='text-primary'
           aria-live="polite"
         >
           <Typewriter
-            words={['FoodNeighbor']}
+            words={['ManageFlat']}
             loop={0}
             cursor
             cursorStyle="_"
