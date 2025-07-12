@@ -40,7 +40,7 @@ const About = () => {
           {/* Feature 1 */}
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <img src="/images/dashboard.png" alt="Dashboard" className="rounded-lg shadow-md w-full" />
+              <img src="./image/about/listing.jpg" alt="Dashboard" className="rounded-lg shadow-md w-full" />
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
@@ -53,7 +53,7 @@ const About = () => {
           {/* Feature 2 */}
           <div className="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
             <div>
-              <img src="/images/payment.png" alt="Payment" className="rounded-lg shadow-md w-full" />
+              <img src="./image/about/payment.jpg" alt="Payment" className="rounded-lg shadow-md w-full" />
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
@@ -66,7 +66,7 @@ const About = () => {
           {/* Feature 3 */}
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <img src="/images/announcement.png" alt="Announcement" className="rounded-lg shadow-md w-full" />
+              <img src="./image/about/announce.jpg" alt="Announcement" className="rounded-lg shadow-md w-full" />
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
@@ -79,7 +79,7 @@ const About = () => {
           {/* Feature 4 */}
           <div className="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
             <div>
-              <img src="/images/roles.png" alt="Roles" className="rounded-lg shadow-md w-full" />
+              <img src="./image/about/role.jpg" alt="Roles" className="rounded-lg shadow-md w-full" />
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">

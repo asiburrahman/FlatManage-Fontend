@@ -37,7 +37,7 @@ const Slider = () => {
       </div>
 
       <div className="flex-1 rounded">
-        <img className='rounded-xl' src="./1.jpg" />
+        <img className='rounded-xl' src="./image/slider/1.jpg" />
       </div>
     </div>
 
@@ -59,7 +59,7 @@ const Slider = () => {
       </div>
 
       <div className="flex-1 rounded">
-        <img className='rounded-xl' src="./2.jpg" />
+        <img className='rounded-xl' src="./image/slider/2.jpg" />
       </div>
     </div>
 
@@ -81,7 +81,7 @@ const Slider = () => {
       </div>
 
       <div className="flex-1 rounded">
-        <img className='rounded-xl' src="./3.jpg" />
+        <img className='rounded-xl' src="./image/slider/3.jpg" />
       </div>
     </div>
 
@@ -102,7 +102,7 @@ const Slider = () => {
       </div>
 
       <div className="flex-1 rounded">
-        <img className='rounded-xl' src="./4.jpg" />
+        <img className='rounded-xl' src="./image/slider/4.jpg" />
       </div>
     </div>
     </>
@@ -121,7 +121,7 @@ const Slider = () => {
       </div>
 
       <div className="flex-1 rounded">
-        <img className='rounded-xl' src="./5.jpg" />
+        <img className='rounded-xl' src="./image/slider/5.jpg" />
       </div>
     </div>
 

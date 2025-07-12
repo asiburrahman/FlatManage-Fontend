@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { AuthContext } from '../../context/AuthContext';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import ApartmentCard from './ApartmentCard';
 import Swal from 'sweetalert2';
 import Loading from '../Loading/Loading';
+import useAuth from '../hooks/UseAuth';
 
 const Apartment = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth()
   const navigate = useNavigate();
   const [minRent, setMinRent] = useState('');
   const [maxRent, setMaxRent] = useState('');
@@ -96,7 +96,7 @@ const Apartment = () => {
   if (isError) return <p className="text-center text-red-500">Failed to load apartments.</p>;
 
   return (
-    <div className="p-6">
+    <div className="w-11/12 mx-auto">
       <h2 className="text-2xl font-bold text-center mb-6">Apartment Listings</h2>
 
       {/* Rent Range Filter */}

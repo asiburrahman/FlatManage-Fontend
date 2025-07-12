@@ -1,0 +1,382 @@
+[
+  {
+    "id": "F1A",
+    "image": "https://i.ibb.co/Pv314469/pexels-dropshado-2251247.jpg",
+    "floor": 1,
+    "block": "A",
+    "apartmentNo": "1A",
+    "rent": 15000,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F1B",
+    "image": "https://i.ibb.co/FbnrsWXk/pexels-falling4utah-2724749.jpg",
+    "floor": 1,
+    "block": "B",
+    "apartmentNo": "1B",
+    "rent": 15500,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F1C",
+    "image": "https://i.ibb.co/nMd8bH8F/pexels-fotoaibe-1571453.jpg",
+    "floor": 1,
+    "block": "C",
+    "apartmentNo": "1C",
+    "rent": 15200,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F1D",
+    "image": "https://i.ibb.co/zVckk2rJ/pexels-fotoaibe-1571469.jpg",
+    "floor": 1,
+    "block": "D",
+    "apartmentNo": "1D",
+    "rent": 15800,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F2A",
+    "image": "https://i.ibb.co/V0xmNpK6/pexels-fotoaibe-1571472-1.jpg",
+    "floor": 2,
+    "block": "A",
+    "apartmentNo": "2A",
+    "rent": 15000,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F2B",
+    "image": "https://i.ibb.co/xqwSHsX8/pexels-fotoaibe-1571459.jpg",
+    "floor": 2,
+    "block": "B",
+    "apartmentNo": "2B",
+    "rent": 15500,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F2C",
+    "image": "https://i.ibb.co/Pv4pfrwh/pexels-pixabay-271795.jpg",
+    "floor": 2,
+    "block": "C",
+    "apartmentNo": "2C",
+    "rent": 15200,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F2D",
+    "image": "https://i.ibb.co/HpxjxTXL/pexels-pixabay-280232.jpg",
+    "floor": 2,
+    "block": "D",
+    "apartmentNo": "2D",
+    "rent": 15800,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F3A",
+    "image": "https://i.ibb.co/PLqPWJD/pexels-vika-glitter-392079-1648771.jpg",
+    "floor": 3,
+    "block": "A",
+    "apartmentNo": "3A",
+    "rent": 15000,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F3B",
+    "image": "https://i.ibb.co/V0xmNpK6/pexels-fotoaibe-1571472-1.jpg",
+    "floor": 3,
+    "block": "B",
+    "apartmentNo": "3B",
+    "rent": 15500,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F3C",
+    "image": "https://i.ibb.co/5Wxq7RWP/pexels-fotoaibe-1668860.jpg",
+    "floor": 3,
+    "block": "C",
+    "apartmentNo": "3C",
+    "rent": 15200,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F3D",
+    "image": "https://i.ibb.co/Fk50bw8w/pexels-fotoaibe-1743227.jpg",
+    "floor": 3,
+    "block": "D",
+    "apartmentNo": "3D",
+    "rent": 15800,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F4A",
+    "image": "https://i.ibb.co/h1C3rTMB/pexels-hillaryfox-1595589.jpg",
+    "floor": 4,
+    "block": "A",
+    "apartmentNo": "4A",
+    "rent": 15000,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F4B",
+    "image": "https://i.ibb.co/jP9hTtyg/pexels-home-decor-interiors-634144-1827054.jpg",
+    "floor": 4,
+    "block": "B",
+    "apartmentNo": "4B",
+    "rent": 15500,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F4C",
+    "image": "https://i.ibb.co/nsYSZngv/pexels-homelane-com-492179-1776574.jpg",
+    "floor": 4,
+    "block": "C",
+    "apartmentNo": "4C",
+    "rent": 15200,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F4D",
+    "image": "https://i.ibb.co/7J1t6XWJ/pexels-jvdm-1457841.jpg",
+    "floor": 4,
+    "block": "D",
+    "apartmentNo": "4D",
+    "rent": 15800,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F5A",
+    "image": "https://i.ibb.co/q3h8D7v3/pexels-pixabay-259962.jpg",
+    "floor": 5,
+    "block": "A",
+    "apartmentNo": "5A",
+    "rent": 15000,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F5B",
+    "image": "https://i.ibb.co/NdYhd2mv/pexels-pixabay-260046.jpg",
+    "floor": 5,
+    "block": "B",
+    "apartmentNo": "5B",
+    "rent": 15500,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F5C",
+    "image": "https://i.ibb.co/3mHzn31q/pexels-pixabay-269218.jpg",
+    "floor": 5,
+    "block": "C",
+    "apartmentNo": "5C",
+    "rent": 15200,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  },
+  {
+    "id": "F5D",
+    "image": "https://i.ibb.co/yxqKkWL/pexels-pixabay-271624.jpg",
+    "floor": 5,
+    "block": "D",
+    "apartmentNo": "5D",
+    "rent": 15800,
+    "status": null,
+    "booking": {
+      "bookedBy": null,
+      "bookedAt": null,
+      "status": null
+    },
+    "rentDetails": {
+      "isPaid": null,
+      "paidDate": null,
+      "transactionId": null
+    }
+  }
+]
