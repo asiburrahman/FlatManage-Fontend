@@ -27,6 +27,8 @@ import ManageCoupons from "../component/Profile/Admin/ManageCoupons";
 import MakePayment from "../component/Profile/Member/Makepayment";
 import StripePayment from "../component/Profile/Member/StripePayment";
 import PaymentHistory from "../component/Profile/Member/PaymentHistory";
+import AdminProtectedRouts from "../Routes/AdminProtectedRouts";
+import MemberProtectedRouts from "../Routes/MemberProtectedRouts";
   
   const router = createBrowserRouter([
     
@@ -94,31 +96,31 @@ import PaymentHistory from "../component/Profile/Member/PaymentHistory";
          },
          {
           path:'/dashboard/manageMembers',
-          Component: ManageMembers,
+          element:<AdminProtectedRouts><ManageMembers></ManageMembers></AdminProtectedRouts>
         },
          {
           path:'/dashboard/agreementRequests',
-          Component: AgreementRequests,
+          element: <AdminProtectedRouts><AgreementRequests></AgreementRequests></AdminProtectedRouts>,
         },
          {
           path:'/dashboard/makeAnnouncement',
-          Component: AdminAnnouncementForm,
+          element: <AdminProtectedRouts><AdminAnnouncementForm></AdminAnnouncementForm></AdminProtectedRouts>,
         },
          {
           path:'/dashboard/manageCoupons',
-          Component: ManageCoupons,
+          element: <AdminProtectedRouts><ManageCoupons></ManageCoupons></AdminProtectedRouts>,
         },
          {
           path:'/dashboard/member/payment',
-          Component: MakePayment
+          element:<MemberProtectedRouts><MakePayment></MakePayment></MemberProtectedRouts>
         },
          {
           path:'/dashboard/member/stripePayment',
-          Component: StripePayment
+          element:<MemberProtectedRouts><StripePayment></StripePayment></MemberProtectedRouts>
         },
          {
           path:'/dashboard/member/history',
-          Component: PaymentHistory
+          element:<MemberProtectedRouts><PaymentHistory></PaymentHistory></MemberProtectedRouts>
         },
         
      
