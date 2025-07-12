@@ -23,9 +23,9 @@ const UserProfile = () => {
   const isPending = agreement?.status === 'pending';
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
-  <div className="max-w-md w-full bg-white shadow-xl rounded-xl p-8">
-    <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">My Profile</h2>
+    <div className="flex justify-center items-center min-h-screen bg-base-100 px-4">
+  <div className="max-w-md w-full  shadow-xl rounded-xl p-8 bg-base-200">
+    <h2 className="text-3xl font-bold text-center  mb-6">My Profile</h2>
     
     <div className="flex flex-col items-center">
       <img
@@ -33,11 +33,11 @@ const UserProfile = () => {
         alt="Profile"
         className="w-24 h-24 rounded-full object-cover shadow mb-4"
       />
-      <h3 className="text-xl font-semibold text-gray-800">{user.displayName}</h3>
-      <p className="text-sm text-gray-500">{user.email}</p>
+      <h3 className="text-xl font-semibold ">{user.displayName}</h3>
+      <p className="text-sm ">{user.email}</p>
     </div>
 
-    <div className="mt-6 space-y-3 border-t pt-4 text-gray-700">
+    <div className="mt-6 space-y-3 border-t pt-4 ">
       <p>
         <span className="font-semibold">Agreement Status:</span>{' '}
         {agreement?.status || 'None'}

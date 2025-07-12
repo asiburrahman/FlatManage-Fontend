@@ -23,7 +23,7 @@ const CallToAction = () => {
             </Link>
             <Link
               to="/apartment"
-              className="btn btn-outline btn-neutral gap-2"
+              className="btn btn-outline btn-warning gap-2"
             >
               <FaArrowRight /> Explore Apartments
             </Link>

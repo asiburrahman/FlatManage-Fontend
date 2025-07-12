@@ -69,7 +69,7 @@ const card4 = <>
 <div className="relative rounded-xl overflow-hidden group cursor-pointer">
     <img
       src="https://i.ibb.co/7J1t6XWJ/pexels-jvdm-1457841.jpg"
-      alt="Digital Marketing"
+      alt="Apartment No: 4C"
       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
     />
     {/* <div className="absolute top-2 right-2 bg-white text-gray-800 text-sm px-3 py-1 rounded-full shadow">
@@ -82,9 +82,9 @@ const card4 = <>
 
 </>
 const card5 = <>
-<div className="https://i.ibb.co/nsYSZngv/pexels-homelane-com-492179-1776574.jpg">
+<div className="relative rounded-xl overflow-hidden group cursor-pointer">
     <img
-      src="https://i.ibb.co/V0xmNpK6/pexels-fotoaibe-1571472-1.jpg"
+      src="https://i.ibb.co/nsYSZngv/pexels-homelane-com-492179-1776574.jpg"
       alt="Apartment No: 4C"
       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
     />
@@ -97,6 +97,7 @@ const card5 = <>
   </div>
 
 </>
+
 const card6 = <>
 <div className="relative rounded-xl overflow-hidden group cursor-pointer">
     <img

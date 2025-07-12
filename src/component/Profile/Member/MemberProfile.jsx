@@ -50,8 +50,8 @@ const MemberProfile = () => {
   const { floor, block, apartmentNo, rent } = apartmentInfo || {};
 
   return (
-   <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
-  <div className="max-w-xl w-full bg-white shadow-xl rounded-xl p-8">
+   <div className="flex justify-center items-center min-h-screen bg-base-100 px-4">
+  <div className="max-w-xl w-full bg-base-200 shadow-xl rounded-xl p-8">
     <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
       <img
         src={image}
@@ -59,11 +59,11 @@ const MemberProfile = () => {
         className="w-24 h-24 rounded-full object-cover shadow"
       />
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">{name}</h2>
-        <p className="text-gray-600">{email}</p>
+        <h2 className="text-2xl font-bold">{name}</h2>
+        <p className="">{email}</p>
       </div>
     </div>
-    <div className="mt-6 border-t pt-4 space-y-3 text-gray-700">
+    <div className="mt-6 border-t pt-4 space-y-3 ">
       <p>
         <span className="font-semibold">Agreement Date:</span>{' '}
         {agreementDate || 'N/A'}
