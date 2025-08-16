@@ -21,8 +21,8 @@ const AdminAnnouncementForm = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-base-200 p-6 rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Make Announcement</h2>
+    <div className="w-8/12 mt-20  mx-auto bg-base-200 p-6 rounded shadow">
+      <h2 className="text-xl text-center font-bold mb-4">Make Announcement</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <input
           {...register('title', { required: true })}
