@@ -79,7 +79,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/" className="flex items-center gap-2 font-bold text-xl lg:text-2xl">
-            <img src="/logo.png" alt="logo" className="w-8 h-8 rounded-full hidden md:inline-block" />
+            <img src="/logo1.png" alt="logo" className="w-15 h-10 rounded-xl hidden md:inline-block" />
             <span className='text-primary'>
               Manage<span className="text-warning">Flat</span>
             </span>

@@ -88,7 +88,7 @@ const DashboardLayout = () => {
           {/* Member Panel */}
           {role?.role === 'member' && (
             <>
-              <li className="mt-4 font-bold text-sm uppercase">User Panel</li>
+              <li className="mt-4 font-bold text-sm uppercase">Member Panel</li>
               <li>
                 <NavLink to="/dashboard" end className={({ isActive }) => isActive ? 'underline font-semibold' : ''}>
                   <FaUser /> My Profile
