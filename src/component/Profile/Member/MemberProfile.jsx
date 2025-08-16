@@ -52,6 +52,7 @@ const MemberProfile = () => {
   return (
    <div className="flex justify-center items-center min-h-screen bg-base-100 px-4">
   <div className="max-w-xl w-full bg-base-200 shadow-xl rounded-xl p-8">
+    <h2 className="text-3xl font-bold text-center  mb-6">Member Profile</h2>
     <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
       <img
         src={image}

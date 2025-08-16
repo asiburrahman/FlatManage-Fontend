@@ -25,7 +25,7 @@ const UserProfile = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-base-100 px-4">
   <div className="max-w-md w-full  shadow-xl rounded-xl p-8 bg-base-200">
-    <h2 className="text-3xl font-bold text-center  mb-6">My Profile</h2>
+    <h2 className="text-3xl font-bold text-center  mb-6">User Profile</h2>
     
     <div className="flex flex-col items-center">
       <img
