@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import Theme from '../ChangeTheme/Theme';
-import {FaTachometerAlt, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
+import { FaTachometerAlt, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, singOutUser } = React.useContext(AuthContext);
@@ -116,16 +116,16 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-48"
               >
                 <li className="font-semibold">
-                  <Link>
+                  <Link to="/dashboard">
                     <FaUserCircle className="mr-1" />
                     {user?.displayName || 'Anonymous'}
                   </Link>
                 </li>
                 <li>
-                  
+
                   <Link to="/dashboard">
-                  <FaTachometerAlt className="mr-1" />
-                  Dashboard</Link>
+                    <FaTachometerAlt className="mr-1" />
+                    Dashboard</Link>
                 </li>
                 <li>
                   <button onClick={handleSignOut}>
