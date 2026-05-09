@@ -2,6 +2,8 @@
 import React from 'react';
 import Button from '../UI/Button/Button';
 
+import { Link } from 'react-router';
+
 const ApartmentCard = ({ apt, handleAgreement }) => {
   return (
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-base-200">
@@ -16,7 +18,12 @@ const ApartmentCard = ({ apt, handleAgreement }) => {
         </div>
       </figure>
       <div className="card-body p-5">
-        <h2 className="card-title text-xl font-bold">Apartment {apt.apartmentNo}</h2>
+        <div className="flex justify-between items-start">
+          <h2 className="card-title text-xl font-bold">Apartment {apt.apartmentNo}</h2>
+          <Link to={`/apartment/${apt._id || apt.id}`}>
+             <Button variant="ghost" size="sm" className="text-primary hover:underline">Details</Button>
+          </Link>
+        </div>
         <div className="grid grid-cols-2 gap-2 my-2 text-sm opacity-80 font-medium">
           <p>Floor: {apt.floor}</p>
           <p>Block: {apt.block}</p>

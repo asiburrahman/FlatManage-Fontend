@@ -19,6 +19,7 @@ import About from "../component/Pages/About";
 import DashboardLayout from "../lyout/DashboardLayout";
 import Dashboard from "../component/Dashboard/Dashboard";
 import Apartment from "../component/Pages/Apartment";
+import ApartmentDetails from "../component/Pages/ApartmentDetails";
 import Announcements from "../component/Pages/Announcements";
 import ManageMembers from "../component/Profile/Admin/ManageMembers";
 import AgreementRequests from "../component/Profile/Admin/AgreementRequests";
@@ -56,7 +57,10 @@ const router = createBrowserRouter([
       {
         path: '/apartment',
         Component: Apartment,
-        // loader: ()=> fetch('http://localhost:3000/availableFood')
+      },
+      {
+        path: '/apartment/:id',
+        Component: ApartmentDetails,
       },
 
 
