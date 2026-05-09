@@ -3,15 +3,16 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 import ApartmentCard from './ApartmentCard';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import useAuth from '../hooks/UseAuth';
 import Swal from 'sweetalert2';
-
+import Button from '../UI/Button/Button';
 
 const HomeApartment = () => {
   const { user } = useAuth()
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
   const {
     data: apartments = [],
     isLoading,
@@ -23,10 +24,13 @@ const HomeApartment = () => {
       return res.data;
     },
   });
-  const apart = apartments.slice(0, 6)
 
-  //Book a apartment
-  //  Submit agreement mutation
+  // Filter: Available and Recent (assuming array order or using a simple slice)
+  const availableApartments = apartments
+    .filter(apt => apt.booking?.status !== 'checked' && apt.booking?.status !== 'pending')
+    .slice(0, 4);
+
+  // Submit agreement mutation
   const agreementMutation = useMutation({
     mutationFn: async (apt) => {
       const agreementData = {
@@ -44,30 +48,50 @@ const HomeApartment = () => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire('Success!', 'Your agreement request has been submitted.', 'success');
+      const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your agreement request has been submitted.',
+        icon: 'success',
+        background: isDark ? '#111827' : '#fff',
+        color: isDark ? '#f9fafb' : '#374151'
+      });
       queryClient.invalidateQueries(['apartments']);
     },
     onError: (error) => {
+      const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
       if (error?.response?.status === 400) {
-        Swal.fire('Already Booked!', error.response.data.message, 'info');
+        Swal.fire({
+          title: 'Already Booked!',
+          text: error.response.data.message,
+          icon: 'info',
+          background: isDark ? '#111827' : '#fff',
+          color: isDark ? '#f9fafb' : '#374151'
+        });
       } else {
-        Swal.fire('Error!', 'Something went wrong while submitting the agreement.', 'error');
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong while submitting the agreement.',
+          icon: 'error',
+          background: isDark ? '#111827' : '#fff',
+          color: isDark ? '#f9fafb' : '#374151'
+        });
       }
     },
   });
 
-  //  Handle agreement with SweetAlert confirmation
   const handleAgreement = (apt) => {
     if (!user) return navigate('/login');
 
+    const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
     Swal.fire({
-      title: 'Are you sure?',
+      title: 'Confirm Agreement',
       text: `Do you want to request Apartment ${apt.apartmentNo} in Block ${apt.block}?`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, request it!',
+      background: isDark ? '#111827' : '#fff',
+      color: isDark ? '#f9fafb' : '#374151'
     }).then((result) => {
       if (result.isConfirmed) {
         agreementMutation.mutate(apt);
@@ -75,21 +99,34 @@ const HomeApartment = () => {
     });
   };
 
+  if (isLoading) return <Loading />;
 
-
-
-  if (isLoading) return <Loading></Loading>
   return (
-    <>
-      {apart.map((apt,) => 
-      <ApartmentCard
-        key={apt._id}
-        apt={apt}
-        handleAgreement={handleAgreement}
-        isMutating={agreementMutation.isLoading}
-      > </ApartmentCard>)}
-    </>
+    <div className="py-12">
+      <div className="flex flex-col items-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Available Apartments</h2>
+        <div className="h-1.5 w-24 bg-primary rounded-full"></div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {availableApartments.map((apt) => (
+          <ApartmentCard
+            key={apt._id}
+            apt={apt}
+            handleAgreement={handleAgreement}
+          />
+        ))}
+      </div>
+
+      <div className="flex justify-center mt-12">
+        <Link to="/apartment">
+          <Button variant="outline" size="lg">
+            See More Apartments
+          </Button>
+        </Link>
+      </div>
+    </div>
   );
 };
 
-export default HomeApartment;
+export default HomeApartment;

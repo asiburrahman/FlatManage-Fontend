@@ -2,6 +2,7 @@ import Slider from '../Slider/Slider';
 import { ToastContainer } from 'react-toastify';
 import TypewriterText from '../Typewriter/TypewriterText';
 import HomeCoupons from '../Pages/HomeCoupons';
+import HomeApartment from '../Pages/HomeApartment';
 import FeaturesSection from '../Pages/FeaturesSection';
 import Testimonials from '../Pages/Testimonials';
 import CallToAction from '../Pages/CallToAction';
@@ -30,6 +31,10 @@ const Home = () => {
 
             <section>
               <HomeCoupons></HomeCoupons>
+            </section>
+
+            <section>
+              <HomeApartment></HomeApartment>
             </section>
 
             <section>

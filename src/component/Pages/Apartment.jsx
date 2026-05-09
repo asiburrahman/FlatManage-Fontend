@@ -6,6 +6,8 @@ import ApartmentCard from './ApartmentCard';
 import Swal from 'sweetalert2';
 import Loading from '../Loading/Loading';
 import useAuth from '../hooks/UseAuth';
+import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
 
 const Apartment = () => {
   const { user } = useAuth()
@@ -13,7 +15,7 @@ const Apartment = () => {
   const [minRent, setMinRent] = useState('');
   const [maxRent, setMaxRent] = useState('');
   const [page, setPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
   const queryClient = useQueryClient();
 
@@ -48,14 +50,34 @@ const Apartment = () => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire('Success!', 'Your agreement request has been submitted.', 'success');
+      const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your agreement request has been submitted.',
+        icon: 'success',
+        background: isDark ? '#111827' : '#fff',
+        color: isDark ? '#f9fafb' : '#374151'
+      });
       queryClient.invalidateQueries(['apartments']);
     },
     onError: (error) => {
+      const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
       if (error?.response?.status === 400) {
-        Swal.fire('Already Booked!', error.response.data.message, 'info');
+        Swal.fire({
+          title: 'Already Booked!',
+          text: error.response.data.message,
+          icon: 'info',
+          background: isDark ? '#111827' : '#fff',
+          color: isDark ? '#f9fafb' : '#374151'
+        });
       } else {
-        Swal.fire('Error!', 'Something went wrong while submitting the agreement.', 'error');
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong while submitting the agreement.',
+          icon: 'error',
+          background: isDark ? '#111827' : '#fff',
+          color: isDark ? '#f9fafb' : '#374151'
+        });
       }
     },
   });
@@ -64,14 +86,15 @@ const Apartment = () => {
   const handleAgreement = (apt) => {
     if (!user) return navigate('/login');
 
+    const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
     Swal.fire({
-      title: 'Are you sure?',
+      title: 'Confirm Agreement',
       text: `Do you want to request Apartment ${apt.apartmentNo} in Block ${apt.block}?`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, request it!',
+      background: isDark ? '#111827' : '#fff',
+      color: isDark ? '#f9fafb' : '#374151'
     }).then((result) => {
       if (result.isConfirmed) {
         agreementMutation.mutate(apt);
@@ -93,51 +116,57 @@ const Apartment = () => {
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
 
   if (isLoading) return <Loading />;
-  if (isError) return <p className="text-center text-red-500">Failed to load apartments.</p>;
+  if (isError) return <p className="text-center text-red-500 py-10 font-bold">Failed to load apartments.</p>;
 
   return (
-    <div className="w-11/12 mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-6">Apartment Listings</h2>
+    <div className="w-11/12 mx-auto py-10">
+      <h2 className="text-3xl font-bold text-center mb-10 text-base-content">Available Apartment Listings</h2>
 
       {/* Rent Range Filter */}
-      <div className="flex gap-4 justify-center mb-6">
-        <input
+      <div className="flex flex-col md:flex-row gap-4 justify-center items-end mb-12 bg-base-200 p-6 rounded-2xl shadow-sm border border-base-300">
+        <Input
+          label="Minimum Rent (TK)"
           type="number"
           value={minRent}
           onChange={(e) => setMinRent(e.target.value)}
-          placeholder="Min Rent"
-          className="input input-bordered"
+          placeholder="e.g. 10000"
+          className="max-w-xs"
         />
-        <input
+        <Input
+          label="Maximum Rent (TK)"
           type="number"
           value={maxRent}
           onChange={(e) => setMaxRent(e.target.value)}
-          placeholder="Max Rent"
-          className="input input-bordered"
+          placeholder="e.g. 50000"
+          className="max-w-xs"
         />
-        <button className="btn btn-primary" onClick={() => setPage(1)}>
+        <Button variant="primary" onClick={() => setPage(1)} className="px-8">
           Search
-        </button>
+        </Button>
       </div>
 
       {/* Apartment Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {selected.map((apt) => (<ApartmentCard
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {selected.map((apt) => (
+          <ApartmentCard
             key={apt._id}
             apt={apt}
             handleAgreement={handleAgreement}
-            isMutating={agreementMutation.isLoading}
           />
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-8">
-        <div className="join">
+      <div className="flex justify-center mt-12">
+        <div className="flex gap-2">
           {[...Array(totalPages)].map((_, i) => (
             <button
               key={i}
-              className={`join-item btn ${page === i + 1 ? 'btn-active' : ''}`}
+              className={`w-10 h-10 rounded-full font-bold transition-all ${
+                page === i + 1 
+                ? 'bg-primary text-white shadow-lg scale-110' 
+                : 'bg-base-300 text-base-content hover:bg-base-content hover:text-base-300'
+              }`}
               onClick={() => setPage(i + 1)}
             >
               {i + 1}

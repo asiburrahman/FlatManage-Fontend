@@ -1,8 +1,8 @@
 import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router";
-  
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router";
+
 
 import Root from "../lyout/Root";
 import Home from "../component/Home/Home";
@@ -29,106 +29,107 @@ import StripePayment from "../component/Profile/Member/StripePayment";
 import PaymentHistory from "../component/Profile/Member/PaymentHistory";
 import AdminProtectedRouts from "../Routes/AdminProtectedRouts";
 import MemberProtectedRouts from "../Routes/MemberProtectedRouts";
-  
-  const router = createBrowserRouter([
-    
-    {
-      path: "/",
-      Component: Root,
-      errorElement: <Error></Error>,
-      children:[
-        {
-            path:'/',
-            Component: Home,
-            hydrateFallbackElement: <Loading></Loading>,
-        },
-    
 
-        {
-          path: '/login',
-          element: <LoginProtectedRouts><Login></Login></LoginProtectedRouts>
-        },
-        {
-          path: '/register',
-          element: <LoginProtectedRouts><Register></Register></LoginProtectedRouts>
-        },
+const router = createBrowserRouter([
 
-        {
-          path:'/apartment',
-          Component: Apartment,
-          // loader: ()=> fetch('http://localhost:3000/availableFood')
-        },
-      
-        
+  {
+    path: "/",
+    Component: Root,
+    errorElement: <Error></Error>,
+    children: [
+      {
+        path: '/',
+        Component: Home,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
 
-       
-        {
-          path: '/contact',
-          Component: Contact
-    
-        },
-        {
-          path: '/about',
-          Component: About
-    
-        },
-         
 
-        
-      ]
+      {
+        path: '/login',
+        element: <LoginProtectedRouts><Login></Login></LoginProtectedRouts>
+      },
+      {
+        path: '/register',
+        element: <LoginProtectedRouts><Register></Register></LoginProtectedRouts>
+      },
 
-    },
-    {
-      path: "/dashboard",
-      element: <PrivetRoutes><DashboardLayout></DashboardLayout></PrivetRoutes>,
-      errorElement: <Error></Error>,
-      children:[
+      {
+        path: '/apartment',
+        Component: Apartment,
+        // loader: ()=> fetch('http://localhost:3000/availableFood')
+      },
 
-        {
-          index: true,
-          Component: Dashboard,
-          // loader: ()=> fetch('http://localhost:3000/availableFood')
-        },
 
-         {
-          path:'announcement',
-          Component: Announcements,
-         },
-         {
-          path:'/dashboard/manageMembers',
-          element:<AdminProtectedRouts><ManageMembers></ManageMembers></AdminProtectedRouts>
-        },
-         {
-          path:'/dashboard/agreementRequests',
-          element: <AdminProtectedRouts><AgreementRequests></AgreementRequests></AdminProtectedRouts>,
-        },
-         {
-          path:'/dashboard/makeAnnouncement',
-          element: <AdminProtectedRouts><AdminAnnouncementForm></AdminAnnouncementForm></AdminProtectedRouts>,
-        },
-         {
-          path:'/dashboard/manageCoupons',
-          element: <AdminProtectedRouts><ManageCoupons></ManageCoupons></AdminProtectedRouts>,
-        },
-         {
-          path:'/dashboard/member/payment',
-          element:<MemberProtectedRouts><MakePayment></MakePayment></MemberProtectedRouts>
-        },
-         {
-          path:'/dashboard/member/stripePayment',
-          element:<MemberProtectedRouts><StripePayment></StripePayment></MemberProtectedRouts>
-        },
-         {
-          path:'/dashboard/member/history',
-          element:<MemberProtectedRouts><PaymentHistory></PaymentHistory></MemberProtectedRouts>
-        },
-        
-     
-       
-        
-      ]}
-    
-   
-  ]);
 
-  export default router
+
+      {
+        path: '/contact',
+        Component: Contact
+
+      },
+      {
+        path: '/about',
+        Component: About
+
+      },
+
+
+
+    ]
+
+  },
+  {
+    path: "/dashboard",
+    element: <PrivetRoutes><DashboardLayout></DashboardLayout></PrivetRoutes>,
+    errorElement: <Error></Error>,
+    children: [
+
+      {
+        index: true,
+        Component: Dashboard,
+        // loader: ()=> fetch('http://localhost:3000/availableFood')
+      },
+
+      {
+        path: 'announcement',
+        Component: Announcements,
+      },
+      {
+        path: '/dashboard/manageMembers',
+        element: <AdminProtectedRouts><ManageMembers></ManageMembers></AdminProtectedRouts>
+      },
+      {
+        path: '/dashboard/agreementRequests',
+        element: <AdminProtectedRouts><AgreementRequests></AgreementRequests></AdminProtectedRouts>,
+      },
+      {
+        path: '/dashboard/makeAnnouncement',
+        element: <AdminProtectedRouts><AdminAnnouncementForm></AdminAnnouncementForm></AdminProtectedRouts>,
+      },
+      {
+        path: '/dashboard/manageCoupons',
+        element: <AdminProtectedRouts><ManageCoupons></ManageCoupons></AdminProtectedRouts>,
+      },
+      {
+        path: '/dashboard/member/payment',
+        element: <MemberProtectedRouts><MakePayment></MakePayment></MemberProtectedRouts>
+      },
+      {
+        path: '/dashboard/member/stripePayment',
+        element: <MemberProtectedRouts><StripePayment></StripePayment></MemberProtectedRouts>
+      },
+      {
+        path: '/dashboard/member/history',
+        element: <MemberProtectedRouts><PaymentHistory></PaymentHistory></MemberProtectedRouts>
+      },
+
+
+
+
+    ]
+  }
+
+
+]);
+
+export default router
