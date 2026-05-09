@@ -4,6 +4,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import UseAxiosToken from '../../hooks/UseAxiosToken';
 import Loading from '../../Loading/Loading';
+import Button from '../../UI/Button/Button';
+import Input from '../../UI/Input/Input';
+import Table from '../../UI/Table/Table';
+import Modal from '../../UI/Modal/Modal';
+import Badge from '../../UI/Badge/Badge';
 
 const ManageCoupons = () => {
     const axiosSecure = UseAxiosToken()
@@ -51,12 +56,15 @@ const ManageCoupons = () => {
   });
 
   const handleDelete = (id) => {
+    const isDark = document.querySelector('html').getAttribute('data-theme') === 'dark';
     Swal.fire({
       title: 'Are you sure?',
       text: 'You want to delete this coupon?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
+      background: isDark ? '#111827' : '#fff',
+      color: isDark ? '#f9fafb' : '#374151'
     }).then((result) => {
       if (result.isConfirmed) {
         deleteCouponMutation.mutate(id);
@@ -88,56 +96,105 @@ const ManageCoupons = () => {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Manage Coupons</h2>
-        <button className="btn btn-primary" onClick={() => { setEditCoupon(null); setShowModal(true); }}>Add Coupon</button>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-3xl font-bold text-base-content">Manage Coupons</h2>
+        <Button 
+          variant="primary" 
+          onClick={() => { setEditCoupon(null); setShowModal(true); }}
+        >
+          Add New Coupon
+        </Button>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Code</th>
-              <th>Discount %</th>
-              <th>Description</th>
-              <th>Expires At</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {coupons.map(coupon => (
-              <tr key={coupon._id}>
-                <td>{coupon.code}</td>
-                <td>{coupon.discount}%</td>
-                <td>{coupon.description}</td>
-                <td>{new Date(coupon.expiresAt).toLocaleDateString()}</td>
-                <td>
-                  <button onClick={() => handleEdit(coupon)} className="btn btn-sm btn-warning mr-2">Edit</button>
-                  <button onClick={() => handleDelete(coupon._id)} className="btn btn-sm btn-error">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Table striped>
+        <Table.Head>
+          <Table.Row>
+            <Table.HeaderCell>Code</Table.HeaderCell>
+            <Table.HeaderCell>Discount %</Table.HeaderCell>
+            <Table.HeaderCell>Description</Table.HeaderCell>
+            <Table.HeaderCell>Expires At</Table.HeaderCell>
+            <Table.HeaderCell>Actions</Table.HeaderCell>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {coupons.map(coupon => (
+            <Table.Row key={coupon._id}>
+              <Table.Cell>
+                <Badge variant="info">{coupon.code}</Badge>
+              </Table.Cell>
+              <Table.Cell>
+                <span className="font-bold text-primary">{coupon.discount}%</span>
+              </Table.Cell>
+              <Table.Cell>{coupon.description}</Table.Cell>
+              <Table.Cell>{new Date(coupon.expiresAt).toLocaleDateString()}</Table.Cell>
+              <Table.Cell>
+                <div className="flex gap-2">
+                  <Button 
+                    size="sm" 
+                    variant="secondary" 
+                    onClick={() => handleEdit(coupon)}
+                  >
+                    Edit
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="danger" 
+                    onClick={() => handleDelete(coupon._id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
 
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded shadow-lg w-96">
-            <h3 className="text-xl font-bold mb-4">{editCoupon ? 'Edit Coupon' : 'Add Coupon'}</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="text" name="code" defaultValue={editCoupon?.code} required placeholder="Coupon Code" className="input input-bordered w-full" />
-              <input type="number" name="discount" defaultValue={editCoupon?.discount} required placeholder="Discount %" className="input input-bordered w-full" />
-              <textarea name="description" defaultValue={editCoupon?.description} placeholder="Description" className="textarea textarea-bordered w-full"></textarea>
-              <input type="date" name="expiresAt" defaultValue={editCoupon?.expiresAt?.split('T')[0]} required className="input input-bordered w-full" />
-              <div className="flex justify-end gap-4">
-                <button type="button" className="btn btn-outline" onClick={() => setShowModal(false)}>Cancel</button>
-                <button type="submit" className="btn btn-primary">{editCoupon ? 'Update' : 'Add'}</button>
-              </div>
-            </form>
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title={editCoupon ? 'Edit Coupon' : 'Add New Coupon'}
+      >
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input 
+            label="Coupon Code" 
+            name="code" 
+            defaultValue={editCoupon?.code} 
+            required 
+            placeholder="e.g. SAVE20" 
+          />
+          <Input 
+            label="Discount Percentage" 
+            type="number" 
+            name="discount" 
+            defaultValue={editCoupon?.discount} 
+            required 
+            placeholder="e.g. 20" 
+          />
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-base-content opacity-80">Description</label>
+            <textarea 
+              name="description" 
+              defaultValue={editCoupon?.description} 
+              placeholder="Enter coupon details..." 
+              className="textarea textarea-bordered w-full bg-base-100 text-base-content border-[#e5e7eb] focus:border-[#6366f1]"
+            ></textarea>
           </div>
-        </div>
-      )}
+          <Input 
+            label="Expiry Date" 
+            type="date" 
+            name="expiresAt" 
+            defaultValue={editCoupon?.expiresAt?.split('T')[0]} 
+            required 
+          />
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="ghost" type="button" onClick={() => setShowModal(false)}>Cancel</Button>
+            <Button type="submit" variant="primary">
+              {editCoupon ? 'Update Coupon' : 'Create Coupon'}
+            </Button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };

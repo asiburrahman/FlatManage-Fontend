@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import Theme from '../ChangeTheme/Theme';
 import { FaTachometerAlt, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
+import Button from '../UI/Button/Button';
 
 const Navbar = () => {
   const { user, singOutUser } = React.useContext(AuthContext);
@@ -92,51 +93,54 @@ const Navbar = () => {
         </div>
 
         {/* Right - User & Theme */}
-        <div className="navbar-end gap-2">
+        <div className="navbar-end gap-3">
           {!user && (
-            <>
-              <Link to="/login" className="btn btn-sm btn-outline btn-primary">
-                Login
+            <div className="flex gap-2">
+              <Link to="/login">
+                <Button variant="outline" size="sm">Login</Button>
               </Link>
-              <Link to="/register" className="btn btn-sm btn-primary text-white">
-                Sign Up
+              <Link to="/register">
+                <Button variant="primary" size="sm">Sign Up</Button>
               </Link>
-            </>
+            </div>
           )}
 
           {user && (
             <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar hover:bg-base-300">
                 <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img src={user.photoURL || '/default-avatar.png'} alt="User" />
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-48"
+                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow-xl bg-base-100 rounded-2xl w-52 border border-base-300"
               >
-                <li className="font-semibold">
-                  <Link to="/dashboard">
-                    <FaUserCircle className="mr-1" />
-                    {user?.displayName || 'Anonymous'}
+                <li className="font-semibold text-primary px-2 py-1">
+                  <div className="flex items-center gap-2">
+                    <FaUserCircle />
+                    <span>{user?.displayName || 'Anonymous'}</span>
+                  </div>
+                </li>
+                <div className="divider my-1 opacity-50"></div>
+                <li>
+                  <Link to="/dashboard" className="py-2">
+                    <FaTachometerAlt />
+                    Dashboard
                   </Link>
                 </li>
                 <li>
-
-                  <Link to="/dashboard">
-                    <FaTachometerAlt className="mr-1" />
-                    Dashboard</Link>
-                </li>
-                <li>
-                  <button onClick={handleSignOut}>
-                    <FaSignOutAlt className="mr-1" /> Sign Out
+                  <button onClick={handleSignOut} className="py-2 text-error">
+                    <FaSignOutAlt /> Sign Out
                   </button>
                 </li>
               </ul>
             </div>
           )}
 
-          <Theme />
+          <div className="ml-1">
+            <Theme />
+          </div>
         </div>
       </div>
     </div>
