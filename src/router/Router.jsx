@@ -19,7 +19,6 @@ import About from "../component/Pages/About";
 import DashboardLayout from "../lyout/DashboardLayout";
 import Dashboard from "../component/Dashboard/Dashboard";
 import Apartment from "../component/Pages/Apartment";
-import ApartmentDetails from "../component/Pages/ApartmentDetails";
 import Announcements from "../component/Pages/Announcements";
 import ManageMembers from "../component/Profile/Admin/ManageMembers";
 import AgreementRequests from "../component/Profile/Admin/AgreementRequests";
@@ -54,15 +53,6 @@ const router = createBrowserRouter([
         element: <LoginProtectedRouts><Register></Register></LoginProtectedRouts>
       },
 
-      {
-        path: '/apartment',
-        Component: Apartment,
-      },
-      {
-        path: '/apartment/:id',
-        Component: ApartmentDetails,
-      },
-
 
 
 
@@ -75,6 +65,10 @@ const router = createBrowserRouter([
         path: '/about',
         Component: About
 
+      },
+      {
+        path: '/apartment',
+        Component: Apartment,
       },
 
 
