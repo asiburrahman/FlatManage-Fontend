@@ -9,14 +9,14 @@ const Root = () => {
     const location = useLocation();
     
     
-    useEffect(()=>{
-        
-        // console.log(location);
+    useEffect(() => {
+        window.scrollTo(0, 0);
         if (location.pathname) {
-            document.title = location.pathname || "Default Title";
+            // Optional: better title logic
+            const pageTitle = location.pathname === '/' ? 'Home' : location.pathname.split('/').filter(Boolean).pop();
+            document.title = `ManageFlat | ${pageTitle ? pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1) : 'Home'}`;
         }
-        
-    },[location])
+    }, [location]);
     
     
 
